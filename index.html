@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retouch Atelier — High-End Photo Retouching & Post-Production Studio</title>
+<meta name="description" content="Retouch Atelier is a high-end post-production studio partnering with brands, studios & photographers worldwide. Fashion, e-commerce, product, jewelry, watches, ghost mannequin & color correction. Retouching from $1/image, 24h turnaround. Free test edit.">
+<meta name="keywords" content="high end photo retouching, product photo retouching service, ecommerce photo editing, jewelry retouching, watch retouching, ghost mannequin service, color correction, fashion retouching, clipping path, white label retouching partner, post production studio">
+<meta property="og:title" content="Retouch Atelier — High-End Photo Retouching Studio">
+<meta property="og:description" content="Your white-label retouching partner. Fashion, e-commerce, jewelry, watches, ghost mannequin & color correction from $1/image. Free test edit.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0b0d; --bg2:#0f0f13; --surface:#15151b; --surface2:#1c1c23;
+    --text:#f4f1ea; --muted:#a8a399; --muted2:#6f6b63;
+    --gold:#c9a96a; --gold-soft:#e2cd9d; --gold-dim:#8a7445;
+    --rose:#c98aa0; --teal:#6fae9f;
+    --line:rgba(255,255,255,.09); --line2:rgba(255,255,255,.045);
+    --serif:'Cormorant Garamond',Georgia,serif;
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --maxw:1220px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
+  section{padding:104px 0;position:relative}
+  h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.08;letter-spacing:.3px}
+  h2{font-size:clamp(2.1rem,4.6vw,3.6rem)}
+  .eyebrow{font-family:var(--sans);font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:20px}
+  .lead{color:var(--muted);font-size:1.06rem;max-width:640px}
+  .gold{color:var(--gold)}
+  .shimmer{background:linear-gradient(100deg,var(--gold) 20%,var(--gold-soft) 40%,#fff7e6 50%,var(--gold-soft) 60%,var(--gold) 80%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 6s linear infinite}
+  @keyframes sh{to{background-position:200% center}}
+
+  .btn{display:inline-block;padding:16px 32px;border-radius:2px;font-family:var(--sans);font-size:.8rem;letter-spacing:.13em;text-transform:uppercase;font-weight:500;cursor:pointer;transition:.35s;border:1px solid transparent;position:relative;overflow:hidden}
+  .btn-gold{background:var(--gold);color:#1a1407}
+  .btn-gold:hover{background:var(--gold-soft);transform:translateY(-2px);box-shadow:0 12px 30px rgba(201,169,106,.25)}
+  .btn-ghost{border-color:var(--line);color:var(--text);background:rgba(255,255,255,.02)}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+
+  header{position:fixed;top:0;left:0;right:0;z-index:100;transition:.4s;border-bottom:1px solid transparent}
+  header.scrolled{background:rgba(11,11,13,.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:80px}
+  .logo{font-family:var(--serif);font-size:1.5rem;font-weight:600;letter-spacing:.5px;display:flex;align-items:center;gap:11px}
+  .logo span{color:var(--gold)}
+  .logo .mark{width:32px;height:32px;border:1px solid var(--gold);display:grid;place-items:center;font-size:.82rem;color:var(--gold);border-radius:50%;letter-spacing:0}
+  .nav-links{display:flex;gap:36px;align-items:center}
+  .nav-links a{font-size:.82rem;letter-spacing:.08em;color:var(--muted);transition:.25s;position:relative}
+  .nav-links a:not(.nav-cta):hover{color:var(--text)}
+  .nav-links a:not(.nav-cta)::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--gold);transition:.3s}
+  .nav-links a:not(.nav-cta):hover::after{width:100%}
+  .nav-cta{padding:11px 22px;border:1px solid var(--gold);color:var(--gold)!important;border-radius:2px;font-size:.74rem!important;letter-spacing:.12em;text-transform:uppercase}
+  .nav-cta:hover{background:var(--gold);color:#1a1407!important}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none}
+  .burger span{width:24px;height:2px;background:var(--text);transition:.3s}
+
+  /* HERO with video */
+  .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:96px 0 44px;box-sizing:border-box}
+  .hero video,.hero .vfallback{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  .hero .vfallback{background-size:cover;background-position:center}
+  .hero .scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(8,8,10,.92) 0%,rgba(8,8,10,.72) 38%,rgba(8,8,10,.35) 70%,rgba(8,8,10,.55) 100%)}
+  .hero .scrim2{position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse at 80% 50%,rgba(201,169,106,.12),transparent 55%)}
+  .hero .wrap{position:relative;z-index:2;width:100%}
+  .hero-inner{max-width:680px}
+  .hero h1{font-size:clamp(2.1rem,4.8vw,4.4rem);line-height:1.07;margin-bottom:24px}
+  .hero h1 em{font-style:italic}
+  .hero .lead{margin-bottom:38px;font-size:1.16rem;color:#e6e2da}
+  .hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:42px}
+  .hero-trust{display:flex;gap:34px;flex-wrap:wrap}
+  .hero-trust div b{color:var(--gold);font-weight:500;font-family:var(--serif);font-size:1.7rem;display:block;line-height:1}
+  .hero-trust div span{color:var(--muted);font-size:.74rem;letter-spacing:.08em}
+  .scrolldown{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:2;color:var(--muted);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px;animation:bob 2.4s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+  .trustbar{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:28px 0;overflow:hidden;background:var(--bg2)}
+  .marquee{display:flex;gap:60px;white-space:nowrap;animation:mq 26s linear infinite;width:max-content}
+  .marquee span{font-family:var(--serif);font-size:1.3rem;letter-spacing:1px;color:var(--muted);opacity:.6}
+  @keyframes mq{to{transform:translateX(-50%)}}
+
+  .sec-head{text-align:center;max-width:680px;margin:0 auto 64px}
+  .sec-head .lead{margin:20px auto 0}
+
+  /* Before/After */
+  .ba{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;border-radius:10px;user-select:none;cursor:ew-resize;background:#f3f2ee;border:1px solid rgba(201,169,106,.30);box-shadow:0 20px 50px rgba(0,0,0,.42);transition:.45s cubic-bezier(.2,.7,.3,1)}
+  .ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+  .ba .before{filter:none}
+  .ba .after{filter:none}
+  .ba .handle{position:absolute;top:0;bottom:0;width:2px;background:var(--gold);left:50%;transform:translateX(-1px);pointer-events:none;box-shadow:0 0 12px rgba(201,169,106,.6)}
+  .ba .handle::after{content:'\2194';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;background:var(--gold);color:#1a1407;display:grid;place-items:center;font-size:1rem;font-weight:700;box-shadow:0 4px 16px rgba(0,0,0,.5)}
+  .ba .tag{position:absolute;bottom:14px;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;padding:5px 12px;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);border-radius:2px;z-index:3}
+  .ba .tag.b{left:14px} .ba .tag.a{right:14px;color:var(--gold)}
+
+  .showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}
+  .showcase-grid .ba{aspect-ratio:4/5}
+
+  /* Services */
+  .svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  .svc{background:var(--bg);padding:40px 30px;transition:.4s;position:relative;overflow:hidden}
+  .svc::before{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(201,169,106,.10),transparent 60%);opacity:0;transition:.4s}
+  .svc:hover{background:var(--surface)} .svc:hover::before{opacity:1}
+  .svc .ico{font-size:1.7rem;margin-bottom:10px;position:relative}
+  .svc .num{font-family:var(--serif);font-size:.9rem;color:var(--gold-dim);position:relative}
+  .svc h3{font-size:1.55rem;margin:14px 0 10px;position:relative}
+  .svc p{font-size:.9rem;color:var(--muted);position:relative}
+
+  /* Portfolio */
+  .filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:42px}
+  .filters button{background:transparent;border:1px solid var(--line);color:var(--muted);padding:9px 20px;border-radius:30px;font-size:.78rem;letter-spacing:.06em;cursor:pointer;transition:.25s;font-family:var(--sans)}
+  .filters button:hover{color:var(--text);border-color:var(--muted2)}
+  .filters button.active{background:var(--gold);border-color:var(--gold);color:#1a1407;font-weight:500}
+  .port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .port-item.hide{display:none}
+  .port-item .ba{box-shadow:0 14px 38px rgba(0,0,0,.38)}
+  .port-item:hover .ba{transform:translateY(-7px);box-shadow:0 30px 64px rgba(0,0,0,.5);border-color:rgba(201,169,106,.55)}
+  .port-cap{margin-top:13px;display:flex;justify-content:space-between;align-items:center}
+  .port-cap h4{font-family:var(--serif);font-size:1.18rem;font-weight:500}
+  .port-cap span{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-dim)}
+  .note{font-size:.72rem;color:var(--muted2);text-align:center;margin-top:28px;font-style:italic}
+
+  .process{background:var(--bg2)}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+  .step{padding-top:28px;border-top:1px solid var(--line)}
+  .step .n{font-family:var(--serif);font-size:2.7rem;color:var(--gold);line-height:1}
+  .step h3{font-size:1.32rem;margin:14px 0 8px}
+  .step p{font-size:.9rem;color:var(--muted)}
+
+  .why{position:relative;overflow:hidden}
+  .aurora{position:absolute;width:60vw;height:60vw;border-radius:50%;filter:blur(120px);opacity:.16;z-index:0}
+  .aurora.a1{background:var(--rose);top:-20%;left:-10%}
+  .aurora.a2{background:var(--teal);bottom:-25%;right:-10%;animation:float 14s ease-in-out infinite}
+  @keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(0,-40px)}}
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;position:relative;z-index:1}
+  .feat{display:flex;gap:18px;margin-bottom:30px}
+  .feat .fi{flex:none;width:48px;height:48px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);font-size:1.1rem;transition:.3s}
+  .feat:hover .fi{background:var(--gold);color:#1a1407}
+  .feat h3{font-size:1.26rem;margin-bottom:5px}
+  .feat p{font-size:.92rem;color:var(--muted)}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+  .stat{background:var(--bg);padding:38px 26px;text-align:center}
+  .stat b{font-family:var(--serif);font-size:3.1rem;color:var(--gold);display:block;line-height:1}
+  .stat span{font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+  /* Partner band */
+  .partner{background:linear-gradient(120deg,#14100a,#0b0b0d 60%);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .partner-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center}
+  .partner h2{margin-bottom:18px}
+  .partner ul{list-style:none;margin-top:24px}
+  .partner li{padding:10px 0;border-bottom:1px solid var(--line2);color:var(--muted);display:flex;gap:12px}
+  .partner li::before{content:'\2713';color:var(--gold)}
+
+  .testi{background:var(--bg2)}
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .quote{background:var(--surface);border:1px solid var(--line);padding:36px 32px;border-radius:4px;transition:.35s}
+  .quote:hover{transform:translateY(-4px);border-color:var(--gold-dim)}
+  .quote .stars{color:var(--gold);letter-spacing:3px;margin-bottom:16px}
+  .quote p{font-family:var(--serif);font-size:1.22rem;font-style:italic;line-height:1.5;margin-bottom:22px}
+  .quote .who b{color:var(--text);font-weight:500;display:block;font-family:var(--sans);font-size:.92rem}
+  .quote .who span{font-size:.82rem;color:var(--muted)}
+
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+  .plan{background:var(--surface);border:1px solid var(--line);padding:42px 34px;border-radius:4px;display:flex;flex-direction:column;transition:.4s}
+  .plan:hover{border-color:var(--gold-dim);transform:translateY(-5px)}
+  .plan.feat-plan{border-color:var(--gold);background:linear-gradient(180deg,rgba(201,169,106,.09),var(--surface))}
+  .plan .badge{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+  .plan h3{font-size:1.65rem;margin-bottom:6px}
+  .plan .from{color:var(--muted);font-size:.82rem;margin-bottom:18px}
+  .plan .amt{font-family:var(--serif);font-size:3rem;color:var(--text);margin-bottom:2px;line-height:1}
+  .plan .amt small{font-size:.85rem;color:var(--muted);font-family:var(--sans)}
+  .plan ul{list-style:none;margin:24px 0 30px;flex:1}
+  .plan li{font-size:.9rem;color:var(--muted);padding:9px 0;border-bottom:1px solid var(--line2);display:flex;gap:10px}
+  .plan li::before{content:'\2713';color:var(--gold)}
+  .plan .btn{text-align:center;width:100%}
+
+  .cta-band{background:radial-gradient(ellipse at 50% 0%,rgba(201,169,106,.10),transparent 60%),var(--bg);text-align:center;border-top:1px solid var(--line)}
+  .cta-band h2{margin-bottom:18px} .cta-band .lead{margin:0 auto 30px}
+
+  .contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:62px}
+  .ci{display:flex;gap:14px;margin:22px 0;align-items:flex-start}
+  .ci .ci-i{color:var(--gold);font-size:1.1rem;flex:none;width:24px}
+  .ci b{display:block;font-weight:500;margin-bottom:2px} .ci span{color:var(--muted);font-size:.92rem}
+  form{background:var(--surface);border:1px solid var(--line);padding:40px;border-radius:4px}
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .field{margin-bottom:18px}
+  label{display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  input,select,textarea{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:13px 14px;border-radius:2px;font-family:var(--sans);font-size:.95rem;font-weight:300;transition:.25s}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold)}
+  textarea{resize:vertical;min-height:92px}
+  form .btn{width:100%;margin-top:6px}
+
+  footer{background:var(--bg2);border-top:1px solid var(--line);padding:66px 0 30px}
+  .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:42px;margin-bottom:48px}
+  footer .logo{margin-bottom:16px}
+  footer p{color:var(--muted);font-size:.9rem;max-width:290px}
+  .foot-col h4{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;font-family:var(--sans);font-weight:500}
+  .foot-col a{display:block;color:var(--muted);font-size:.9rem;margin-bottom:11px;transition:.2s}
+  .foot-col a:hover{color:var(--text)}
+  .foot-bot{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--muted2);font-size:.8rem}
+
+  .reveal{opacity:0;transform:translateY(30px);transition:.85s cubic-bezier(.2,.7,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:980px){
+    .showcase-grid,.why-grid,.contact-grid,.partner-grid{grid-template-columns:1fr;gap:46px}
+    .svc-grid{grid-template-columns:repeat(2,1fr)}
+    .steps,.testi-grid,.price-grid,.port-grid{grid-template-columns:repeat(2,1fr)}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .nav-links{position:fixed;top:80px;right:0;flex-direction:column;background:var(--bg2);border-left:1px solid var(--line);border-bottom:1px solid var(--line);padding:28px 32px;gap:22px;transform:translateX(110%);transition:.35s;min-width:240px;align-items:flex-start}
+    .nav-links.open{transform:none}
+    .burger{display:flex}
+  }
+  @media(max-width:560px){
+    section{padding:74px 0}
+    .svc-grid,.steps,.testi-grid,.price-grid,.port-grid,.stats,.frow,.foot-grid{grid-template-columns:1fr}
+    .hero-cta .btn{width:100%;text-align:center}
+    .hero-trust{gap:24px}
+  }
+
+  .showcase-grid .ba{max-width:430px;margin:0 auto;aspect-ratio:4/5}
+  .partner-grid .ba{max-width:430px;margin:0 auto}
+  @media(max-width:980px){.showcase-grid .ba,.partner-grid .ba{max-width:360px}}
+
+  .ecom-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .ecom-card{position:relative;aspect-ratio:4/5;border-radius:10px;overflow:hidden;background-size:cover;background-position:center;border:1px solid var(--line);transition:.45s cubic-bezier(.2,.7,.3,1)}
+  .ecom-card::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,8,10,.05),rgba(8,8,10,.08) 38%,rgba(8,8,10,.93))}
+  .ecom-card:hover{transform:translateY(-7px);border-color:rgba(201,169,106,.55);box-shadow:0 26px 60px rgba(0,0,0,.5)}
+  .ecom-inner{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:28px}
+  .ecom-num{font-family:var(--serif);font-size:1rem;color:var(--gold)}
+  .ecom-card h3{font-size:1.5rem;margin:6px 0 8px}
+  .ecom-card p{font-size:.88rem;color:#d9d4ca;line-height:1.55}
+  .svc-tags-label{text-align:center;margin:54px 0 18px;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+  .svc-tags{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+  .svc-tags .st{font-size:.82rem;letter-spacing:.03em;color:var(--muted);border:1px solid var(--line);padding:10px 18px;border-radius:30px;transition:.25s}
+  .svc-tags .st:hover{color:var(--text);border-color:var(--muted2)}
+  .svc-tags .st.on{color:#1a1407;background:var(--gold);border-color:var(--gold);font-weight:500}
+  @media(max-width:760px){.ecom-grid{grid-template-columns:1fr}}
+
+  .price-hero{text-align:center;max-width:700px;margin:0 auto 56px}
+  .price-amt{font-family:var(--serif);font-size:clamp(3rem,7vw,5rem);color:var(--gold);line-height:1;font-weight:500}
+  .price-amt span{color:var(--muted2);font-style:italic}
+  .price-amt small{font-family:var(--sans);font-size:1.05rem;color:var(--muted);letter-spacing:.05em}
+  .price-sub{color:var(--muted);font-size:1.06rem;margin:20px auto 30px;max-width:560px;line-height:1.7}
+  .ent-panel{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;background:linear-gradient(120deg,rgba(201,169,106,.09),var(--surface));border:1px solid var(--gold-dim);border-radius:8px;padding:48px}
+  .ent-left h3{font-size:1.85rem;margin:10px 0 14px}
+  .ent-left p{color:var(--muted);margin-bottom:22px;line-height:1.7}
+  .ent-left ul{list-style:none}
+  .ent-left li{padding:9px 0;border-bottom:1px solid var(--line2);color:var(--muted);display:flex;gap:10px}
+  .ent-left li::before{content:'\2713';color:var(--gold)}
+  .ent-form{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:32px}
+  .ent-form h4{font-family:var(--serif);font-size:1.45rem;margin-bottom:18px;font-weight:500}
+  .ent-form .frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .ent-form .field{margin-bottom:14px}
+  .ent-form textarea{min-height:70px}
+  .ent-form .btn{width:100%;margin-top:6px}
+  @media(max-width:860px){.ent-panel{grid-template-columns:1fr;gap:30px;padding:30px}.ent-form .frow{grid-template-columns:1fr}}
+.nav-cta{white-space:nowrap}.logo{flex:0 0 auto;white-space:nowrap}.nav-links{flex-wrap:nowrap}#langSel{flex:0 0 auto}</style>
+<link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/png" href="assets/icon-256.png"><link rel="apple-touch-icon" href="assets/icon-256.png"></head>
+<body>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#" class="logo"><span class="mark" style="border:none;width:34px;height:34px"><svg viewBox="0 0 100 100" width="34" height="34" aria-hidden="true"><path d="M50 4 Q50 50 96 50 Q50 50 50 96 Q50 50 4 50 Q50 50 50 4 Z" fill="#c9a96a"/></svg></span>Retouch&nbsp;<span>Atelier</span></a>
+    <nav class="nav-links" id="menu">
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#process">Process</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="nav-cta">Free Test Edit</a>
+    </nav>
+    <select id="langSel" aria-label="Language" style="background:var(--bg2);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-family:var(--sans);font-size:13px;letter-spacing:.04em;margin-left:14px;width:74px;max-width:74px;flex:0 0 auto;cursor:pointer"><option value="en">EN</option><option value="es">ES</option><option value="da">DA</option><option value="de">DE</option></select>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <video src="assets/heroreal.mp4" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.webp"></video>
+  <div class="scrim"></div><div class="scrim2"></div>
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="eyebrow reveal">High-End Post-Production Studio</div>
+      <h1 class="reveal">Flawless imagery,<br><em class="shimmer">delivered</em> on time.</h1>
+      <p class="lead reveal">Your behind-the-scenes retouching partner. We make brands, studios and photographers look their absolute best — fashion, e-commerce, jewelry &amp; watches, retouched to perfection.</p>
+      <div class="hero-cta reveal">
+        <a href="#contact" class="btn btn-gold">Get a Free Test Edit</a>
+        <a href="#portfolio" class="btn btn-ghost">View Portfolio</a>
+      </div>
+      <div class="hero-trust reveal">
+        <div><b>$1</b><span>Per image, from</span></div>
+        <div><b>24h</b><span>Avg. turnaround</span></div>
+        <div><b>100%</b><span>Satisfaction</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="scrolldown">Scroll<span>&#8595;</span></div>
+</section>
+
+<!-- TRUST -->
+<div class="trustbar">
+  <div class="marquee">
+    <span>FASHION</span><span>&#10022;</span><span>E-COMMERCE</span><span>&#10022;</span><span>JEWELRY</span><span>&#10022;</span><span>WATCHES</span><span>&#10022;</span><span>PRODUCT</span><span>&#10022;</span><span>GHOST MANNEQUIN</span><span>&#10022;</span><span>COLOR</span><span>&#10022;</span>
+    <span>FASHION</span><span>&#10022;</span><span>E-COMMERCE</span><span>&#10022;</span><span>JEWELRY</span><span>&#10022;</span><span>WATCHES</span><span>&#10022;</span><span>PRODUCT</span><span>&#10022;</span><span>GHOST MANNEQUIN</span><span>&#10022;</span><span>COLOR</span><span>&#10022;</span>
+  </div>
+</div>
+
+<!-- SHOWCASE before/after -->
+<section id="showcase">
+  <div class="wrap showcase-grid">
+    <div class="reveal">
+      <div class="eyebrow">The Difference</div>
+      <h2>Raw capture in.<br><span class="gold">Editorial perfection</span> out.</h2>
+      <p class="lead" style="margin-top:20px">Drag the slider to see what high-end retouching really looks like — natural, refined, and consistent across every frame. This is the standard we deliver on every single image.</p>
+      <div class="hero-cta" style="margin-top:32px"><a href="#portfolio" class="btn btn-ghost">See More Work</a></div>
+    </div>
+    <div class="reveal">
+      <div class="ba" data-ba>
+        <img class="after" src="assets/img/dress_a45.webp" alt="After retouching">
+        <img class="before" src="assets/img/dress_b45.webp" alt="Before retouching" data-clip style="clip-path:inset(0 50% 0 0)">
+        <div class="handle"></div><span class="tag b">Before</span><span class="tag a">After</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">What We Do</div>
+      <h2>E-commerce post-production, <span class="gold">perfected.</span></h2>
+      <p class="lead">From on-model apparel to the finest product detail — every image retouched to a clean, consistent, conversion-ready standard.</p>
+    </div>
+    <div class="ecom-grid">
+      <div class="ecom-card reveal" style="background-image:url('assets/img/ecom-apparel.webp')">
+        <div class="ecom-inner"><span class="ecom-num">01</span><h3>Apparel &amp; On-Model</h3><p>Natural skin, garment cleanup &amp; styling fixes — campaign-ready fashion.</p></div>
+      </div>
+      <div class="ecom-card reveal" style="background-image:url('assets/img/ecom-product.webp')">
+        <div class="ecom-inner"><span class="ecom-num">02</span><h3>Product &amp; Accessories</h3><p>Jewelry, watches &amp; accessories retouched to premium, true-to-life clarity.</p></div>
+      </div>
+      <div class="ecom-card reveal" style="background-image:url('assets/img/ecom-clothing.webp')">
+        <div class="ecom-inner"><span class="ecom-num">03</span><h3>Clothing &amp; Flat Lay</h3><p>Ghost mannequin, flat-lay &amp; invisible-mannequin finishing for clean catalogs.</p></div>
+      </div>
+    </div>
+    <p class="svc-tags-label reveal">Full retouching services</p>
+    <div class="svc-tags reveal">
+      <span class="st on">Apparel &amp; On-Model</span><span class="st on">Product &amp; Accessories</span><span class="st on">Clothing &amp; Flat Lay</span><span class="st">Jewelry Retouching</span><span class="st">Watch Retouching</span><span class="st">Footwear</span><span class="st">Ghost Mannequin</span><span class="st">Background Removal</span><span class="st">Clipping Path</span><span class="st">Shadow Creation</span><span class="st">Color Correction</span><span class="st">Skin Retouching</span>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Before / After</div>
+      <h2>Drag to see the difference.</h2>
+      <p class="lead">A glimpse of the quality we deliver. Slide each image to compare the raw capture with the final retouch.</p>
+    </div>
+    <div class="filters reveal">
+      <button class="active" data-f="all">All</button>
+      <button data-f="ghost">Ghost Mannequin</button>
+      <button data-f="jewelry">Jewelry</button>
+      <button data-f="footwear">Footwear</button>
+      <button data-f="color">Color</button>
+      <button data-f="auto">Automotive</button>
+    </div>
+    <div class="port-grid" id="portGrid">
+<div class="port-item" data-cat="ghost">
+  <div class="ba" data-ba>
+   <img class="after" src="assets/img/dress_a.webp" alt="Ghost Mannequin after" loading="lazy" decoding="async">
+   <img class="before" src="assets/img/dress_b.webp" alt="Ghost Mannequin before" data-clip loading="lazy" decoding="async" style="clip-path:inset(0 50% 0 0)">
+   <div class="handle"></div><span class="tag b">Before</span><span class="tag a">After</span>
+  </div>
+  <div class="port-cap"><h4>Ghost Mannequin</h4><span>Apparel</span></div>
+ </div>
+<div class="port-item" data-cat="jewelry">
+  <div class="ba" data-ba>
+   <img class="after" src="assets/img/jring_a.webp" alt="Sapphire Halo Ring after" loading="lazy" decoding="async">
+   <img class="before" src="assets/img/jring_b.webp" alt="Sapphire Halo Ring before" data-clip loading="lazy" decoding="async" style="clip-path:inset(0 50% 0 0)">
+   <div class="handle"></div><span class="tag b">Before</span><span class="tag a">After</span>
+  </div>
+  <div class="port-cap"><h4>Sapphire Halo Ring</h4><span>Ring</span></div>
+ </div>
+<div class="port-item" data-cat="footwear">
+  <div class="ba" data-ba>
+   <img class="after" src="assets/img/heels_a.webp" alt="Shadow Creation after" loading="lazy" decoding="async">
+   <img class="before" src="assets/img/heels_b.webp" alt="Shadow Creation before" data-clip loading="lazy" decoding="async" style="clip-path:inset(0 50% 0 0)">
+   <div class="handle"></div><span class="tag b">Before</span><span class="tag a">After</span>
+  </div>
+  <div class="port-cap"><h4>Shadow Creation</h4><span>Footwear</span></div>
+ </div>
+<div class="port-item" data-cat="color">
+  <div class="ba" data-ba>
+   <img class="after" src="assets/img/model_a.webp" alt="Color Correction after" loading="lazy" decoding="async">
+   <img class="before" src="assets/img/model_b.webp" alt="Color Correction before" data-clip loading="lazy" decoding="async" style="clip-path:inset(0 50% 0 0)">
+   <div class="handle"></div><span class="tag b">Before</span><span class="tag a">After</span>
+  </div>
+  <div class="port-cap"><h4>Color Correction</h4><span>Apparel</span></div>
+ </div>
+<div class="port-item" data-cat="jewelry">
+  <div class="ba" data-ba>
+   <img class="after" src="assets/img/jneck_a.webp" alt="Emerald Pendant after" loading="lazy" decoding="async">
+   <img class="before" src="assets/img/jneck_b.webp" alt="Emerald Pendant before" data-clip loading="lazy" decoding="async" style="clip-path:inset(0 50% 0 0)">
+   <div class="handle"></div><span class="tag b">Before</span><span class="tag a">After</span>
+  </div>
+  <div class="port-cap"><h4>Emerald Pendant</h4><span>Necklace</span></div>
+ </div>
+<div class="port-item" data-cat="ghost">
+  <div class="ba" data-ba>
+   <img class="after" src="assets/img/trousers_a.webp" alt="Invisible Mannequin after" loading="lazy" decoding="async">
+   <img class="before" src="assets/img/trousers_b.webp" alt="Invisible Mannequin before" data-clip loading="lazy" decoding="async" style="clip-path:inset(0 50% 0 0)">
+   <div class="handle"></div><span class="tag b">Before</span><span class="tag a">After</span>
+  </div>
+  <div class="port-cap"><h4>Invisible Mannequin</h4><span>Apparel</span></div>
+ </div>
+<div class="port-item" data-cat="auto">
+  <div class="ba" data-ba>
+   <img class="after" src="assets/img/car_a.webp" alt="Background Removal after" loading="lazy" decoding="async">
+   <img class="before" src="assets/img/car_b.webp" alt="Background Removal before" data-clip loading="lazy" decoding="async" style="clip-path:inset(0 50% 0 0)">
+   <div class="handle"></div><span class="tag b">Before</span><span class="tag a">After</span>
+  </div>
+  <div class="port-cap"><h4>Background Removal</h4><span>Automotive</span></div>
+ </div>
+<div class="port-item" data-cat="jewelry">
+  <div class="ba" data-ba>
+   <img class="after" src="assets/img/jear_a.webp" alt="Yellow Diamond Pendant after" loading="lazy" decoding="async">
+   <img class="before" src="assets/img/jear_b.webp" alt="Yellow Diamond Pendant before" data-clip loading="lazy" decoding="async" style="clip-path:inset(0 50% 0 0)">
+   <div class="handle"></div><span class="tag b">Before</span><span class="tag a">After</span>
+  </div>
+  <div class="port-cap"><h4>Yellow Diamond Pendant</h4><span>Necklace</span></div>
+ </div>
+<div class="port-item" data-cat="footwear">
+  <div class="ba" data-ba>
+   <img class="after" src="assets/img/sandal_a.webp" alt="Support Removal after" loading="lazy" decoding="async">
+   <img class="before" src="assets/img/sandal_b.webp" alt="Support Removal before" data-clip loading="lazy" decoding="async" style="clip-path:inset(0 50% 0 0)">
+   <div class="handle"></div><span class="tag b">Before</span><span class="tag a">After</span>
+  </div>
+  <div class="port-cap"><h4>Support Removal</h4><span>Footwear</span></div>
+ </div>
+    </div>
+    <p class="note">Real before / after work delivered by our studio for international brands &amp; studios.</p>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="process">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="eyebrow">How It Works</div><h2>Simple, fast, reliable.</h2></div>
+    <div class="steps">
+      <div class="step reveal"><div class="n">1</div><h3>Send Images</h3><p>Upload your files &amp; a short brief. Not sure? Start with one free test edit.</p></div>
+      <div class="step reveal"><div class="n">2</div><h3>We Retouch</h3><p>Your dedicated retoucher works to your style guide and brand standards.</p></div>
+      <div class="step reveal"><div class="n">3</div><h3>Review</h3><p>Files back within 24&#8211;48h. Unlimited revisions until it's perfect.</p></div>
+      <div class="step reveal"><div class="n">4</div><h3>Delivery</h3><p>Final web &amp; print-ready files in your preferred format.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why" class="why">
+  <div class="aurora a1"></div><div class="aurora a2"></div>
+  <div class="wrap why-grid">
+    <div class="reveal">
+      <div class="eyebrow">Why Retouch Atelier</div>
+      <h2 style="margin-bottom:36px">The studio brands trust with their best frames.</h2>
+      <div class="feat"><div class="fi">&#10003;</div><div><h3>Consistent, on-brand quality</h3><p>Style guides, color profiles and QC on every single image.</p></div></div>
+      <div class="feat"><div class="fi">&#9889;</div><div><h3>Fast, predictable turnaround</h3><p>24&#8211;48h standard, with rush delivery for tight deadlines.</p></div></div>
+      <div class="feat"><div class="fi">&#128274;</div><div><h3>Confidential &amp; white-label</h3><p>NDAs welcome. We work invisibly behind your brand.</p></div></div>
+      <div class="feat"><div class="fi">&#128172;</div><div><h3>Real, responsive support</h3><p>One point of contact who actually replies — across time zones.</p></div></div>
+    </div>
+    <div class="stats reveal">
+      <div class="stat"><b>500k+</b><span>Images Retouched</span></div>
+      <div class="stat"><b>24h</b><span>Avg. Turnaround</span></div>
+      <div class="stat"><b>40+</b><span>Countries Served</span></div>
+      <div class="stat"><b>98%</b><span>Client Retention</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNER -->
+<section class="partner">
+  <div class="wrap partner-grid">
+    <div class="reveal">
+      <div class="eyebrow">Studio Partnership</div>
+      <h2>Your white-label <span class="gold">retouching partner.</span></h2>
+      <p class="lead">Based in Bangladesh, delivering world-class quality at partnership pricing. We become the invisible post-production arm of your studio or brand — scalable volume, dependable turnaround, your name on every delivery.</p>
+      <ul>
+        <li>White-label &amp; NDA-backed — we stay behind the scenes</li>
+        <li>Volume &amp; monthly retainer pricing from $1/image</li>
+        <li>Dedicated retoucher matched to your style</li>
+        <li>Scale up for campaigns without hiring in-house</li>
+      </ul>
+    </div>
+    <div class="reveal"><div class="ba" data-ba style="aspect-ratio:4/5">
+      <img class="after" src="assets/img/car_a45.webp" alt="After">
+      <img class="before" src="assets/img/car_b45.webp" alt="Before" data-clip style="clip-path:inset(0 50% 0 0)">
+      <div class="handle"></div><span class="tag b">Before</span><span class="tag a">After</span>
+    </div></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="eyebrow">Kind Words</div><h2>Loved by the people who care most.</h2></div>
+    <div class="testi-grid">
+      <div class="quote reveal"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"The consistency across 2,000+ product shots was flawless. They're now our default retouching partner."</p><div class="who"><b>Sample — E-commerce Brand</b><span>Head of Creative</span></div></div>
+      <div class="quote reveal"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Skin work that looks real, not plastic. Exactly what our editorial clients expect."</p><div class="who"><b>Sample — Fashion Studio</b><span>Studio Manager</span></div></div>
+      <div class="quote reveal"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Jewelry retouching at a level we couldn't find anywhere else. Fast, too."</p><div class="who"><b>Sample — Jewelry Label</b><span>Founder</span></div></div>
+    </div>
+    <p class="note">Placeholder testimonials — we'll replace these with your real client reviews as they come in.</p>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Pricing</div>
+      <h2>Simple, transparent pricing.</h2>
+    </div>
+    <div class="price-hero reveal">
+      <div class="price-amt">$1 <span>&ndash;</span> $2.50 <small>/ image</small></div>
+      <p class="price-sub">Final rate depends on <b>complexity</b> &amp; <b>volume</b>. Bulk pricing &amp; monthly retainers available &mdash; the more you send, the lower the rate.</p>
+      <a href="#contact" class="btn btn-gold">Get a Free Test Edit</a>
+    </div>
+    <!-- QUOTE CALCULATOR -->
+<style>
+.qc{max-width:760px;margin:46px auto 0;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:34px}
+.qc h3{font-family:var(--serif);font-size:30px;font-weight:600;margin-bottom:6px;color:var(--text)}
+.qc .qc-sub{color:var(--muted);font-size:14px;margin-bottom:26px}
+.qc-row{margin-bottom:20px}
+.qc-row label{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.qc select,.qc input[type=number]{width:100%;background:var(--bg2);border:1px solid var(--line);color:var(--text);padding:14px 16px;border-radius:10px;font-family:var(--sans);font-size:15px}
+.qc-seg{display:flex;gap:10px;flex-wrap:wrap}
+.qc-seg button{flex:1;min-width:110px;background:var(--bg2);border:1px solid var(--line);color:var(--muted);padding:12px;border-radius:10px;cursor:pointer;font-family:var(--sans);font-size:14px;transition:.25s}
+.qc-seg button.on{background:var(--gold);border-color:var(--gold);color:#1a1a1a;font-weight:600}
+.qc-out{margin-top:28px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px}
+.qc-out .lbl{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.qc-out .per{font-family:var(--serif);font-size:24px;color:var(--gold-soft)}
+.qc-out .tot{font-family:var(--serif);font-size:44px;color:var(--text);line-height:1}
+.qc-note{font-size:12.5px;color:var(--muted2);margin-top:14px}
+.qc-cta{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+@media(max-width:560px){.qc{padding:24px}}
+</style>
+<div class="qc reveal">
+  <h3>Instant quote estimate</h3>
+  <p class="qc-sub">Get a ballpark in seconds. Your exact rate is confirmed after a free test edit.</p>
+  <div class="qc-row"><label>Service</label>
+    <select id="qcService">
+      <option value="clip">Clipping path / background removal</option>
+      <option value="color">Color correction</option>
+      <option value="product">Product &amp; accessories</option>
+      <option value="ghost">Ghost mannequin</option>
+      <option value="apparel">Apparel &amp; on-model</option>
+      <option value="jewel">Jewelry / watch retouching</option>
+    </select>
+  </div>
+  <div class="qc-row"><label>Complexity</label>
+    <div class="qc-seg" id="qcComplex"><button data-v="0" class="on">Basic</button><button data-v="1">Standard</button><button data-v="2">High-end</button></div>
+  </div>
+  <div class="qc-row"><label>Number of images</label><input type="number" id="qcQty" min="1" value="100"></div>
+  <div class="qc-row"><label>Turnaround</label>
+    <div class="qc-seg" id="qcRush"><button data-v="1" class="on">Standard 24&ndash;48h</button><button data-v="1.3">Rush 12&ndash;24h (+30%)</button></div>
+  </div>
+  <div class="qc-out">
+    <div><div class="lbl">Per image</div><div class="per" id="qcPer">$0.60</div></div>
+    <div style="text-align:right"><div class="lbl">Estimated total</div><div class="tot" id="qcTot">$60</div></div>
+  </div>
+  <p class="qc-note" id="qcNote">Estimate only &mdash; your exact quote comes with a free test edit.</p>
+  <div class="qc-cta"><a href="#contact" class="btn btn-gold">Get a Free Test Edit</a><a href="#enterprise" class="btn btn-ghost">Book a Consultation</a></div>
+</div>
+<script>
+(function(){
+  var base={clip:[0.6,0.9,1.3],color:[0.8,1.1,1.5],product:[1.0,1.4,1.9],ghost:[1.3,1.8,2.4],apparel:[1.2,1.7,2.3],jewel:[1.4,1.9,2.5]};
+  var cx=0, rush=1;
+  var svc=document.getElementById('qcService'),qty=document.getElementById('qcQty');
+  function disc(q){if(q>=1000)return .25;if(q>=500)return .18;if(q>=100)return .10;return 0;}
+  function calc(){
+    var b=base[svc.value][cx];var q=Math.max(1,parseInt(qty.value||'1',10));var d=disc(q);
+    var per=b*(1-d)*rush;var tot=per*q;
+    document.getElementById('qcPer').textContent='$'+per.toFixed(2);
+    document.getElementById('qcTot').textContent='$'+Math.round(tot).toLocaleString();
+    document.getElementById('qcNote').textContent=(d>0?('Volume discount '+(d*100)+'% applied. '):'')+'Estimate only — your exact quote comes with a free test edit.';
+  }
+  svc.addEventListener('change',calc);qty.addEventListener('input',calc);
+  document.querySelectorAll('#qcComplex button').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('#qcComplex button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');cx=parseInt(b.dataset.v,10);calc();});});
+  document.querySelectorAll('#qcRush button').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('#qcRush button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');rush=parseFloat(b.dataset.v);calc();});});
+  calc();
+})();
+</script>
+
+<div class="ent-panel reveal" id="enterprise">
+      <div class="ent-left">
+        <div class="eyebrow">Enterprise</div>
+        <h3>For high-volume studios &amp; global teams</h3>
+        <p>Dedicated retouchers, custom QC pipelines, priority &amp; rush delivery, NDA and volume rates. Let&rsquo;s build a post-production workflow around your brand.</p>
+        <ul>
+          <li>Dedicated team matched to your style</li>
+          <li>White-label &amp; NDA-backed</li>
+          <li>Volume &amp; monthly retainer pricing</li>
+          <li>Priority &amp; rush turnaround</li>
+        </ul>
+      </div>
+      <form class="ent-form" action="https://formsubmit.co/atelier@retouchatelier.com" method="POST">
+        <input type="hidden" name="_subject" value="New Enterprise consultation request - Retouch Atelier">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false"><input type="hidden" name="_cc" value="retouchatelier.studio@gmail.com">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+        <input type="hidden" name="_next" value="https://retouchatelier.com/thank-you/">
+        <input type="hidden" name="Request type" value="Enterprise consultation / meeting">
+        <h4>Book a Consultation</h4>
+        <div class="frow">
+          <div class="field"><label>Name</label><input type="text" name="name" required></div>
+          <div class="field"><label>Email</label><input type="email" name="email" required></div>
+        </div>
+        <div class="frow">
+          <div class="field"><label>Company / Studio</label><input type="text" name="company"></div>
+          <div class="field"><label>Monthly volume</label><input type="text" name="monthly_volume" placeholder="e.g. 500 images"></div>
+        </div>
+        <div class="field"><label>Preferred date &amp; time</label><input type="text" name="preferred_time" placeholder="e.g. Mon 3pm GMT, or this week"></div>
+        <div class="field"><label>What do you need?</label><textarea name="message" placeholder="Tell us about your team, volume and goals..."></textarea></div>
+        <button type="submit" class="btn btn-gold">Book a Consultation</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="wrap">
+    <div class="eyebrow">Try Before You Buy</div>
+    <h2>Send one image. Get it retouched <span class="shimmer">free.</span></h2>
+    <p class="lead">See our quality risk-free. No commitment, no card — just proof that we're the partner you've been looking for.</p>
+    <a href="#contact" class="btn btn-gold">Claim Your Free Test Edit</a>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="book">
+  <div class="wrap">
+    <div class="sec-head reveal" style="text-align:center;max-width:660px;margin:0 auto 34px">
+      <div class="eyebrow">Book a meeting</div>
+      <h2>Schedule a consultation &mdash; your time, your way.</h2>
+      <p style="color:var(--muted);margin-top:8px">Pick a slot that suits you. We&rsquo;ll meet on Google Meet and map out how we can help.</p>
+    </div>
+    <div class="calendly-inline-widget" data-url="https://calendly.com/retouchatelier-studio/consultation?hide_gdpr_banner=1&background_color=15151b&text_color=f4f1ea&primary_color=c9a96a" style="min-width:320px;height:700px"></div>
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap contact-grid">
+    <div class="reveal">
+      <div class="eyebrow">Start a Project</div>
+      <h2>Let's make your images flawless.</h2>
+      <p class="lead" style="margin-bottom:30px">Tell us what you need. We'll reply within a few hours with a quote — or your free test edit.</p>
+      <div class="ci"><div class="ci-i">&#9993;</div><div><b>Email</b><span><a href="mailto:atelier@retouchatelier.com" style="color:inherit;text-decoration:none">atelier@retouchatelier.com</a></span></div></div>
+      <div class="ci"><div class="ci-i">&#128172;</div><div><b>WhatsApp</b><span>Fast replies, all time zones</span></div></div>
+      <div class="ci"><div class="ci-i">&#127758;</div><div><b>Serving</b><span>USA &middot; UK &middot; Europe &middot; Australia &middot; Worldwide</span></div></div>
+      <div class="ci"><div class="ci-i">&#9201;</div><div><b>Turnaround</b><span>24&#8211;48 hours standard &middot; rush available</span></div></div>
+      <div class="ci"><div class="ci-i">&#9737;</div><div><b>Follow</b><span>Instagram &middot; LinkedIn</span></div></div>
+    </div>
+    <form action="https://formsubmit.co/atelier@retouchatelier.com" method="POST" class="reveal"><input type="hidden" name="_subject" value="New inquiry - Retouch Atelier website"><input type="hidden" name="_template" value="table"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_cc" value="retouchatelier.studio@gmail.com"><input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off"><input type="hidden" name="_next" value="https://retouchatelier.com/thank-you/">
+      <div class="frow">
+        <div class="field"><label>Name</label><input type="text" name="name" required></div>
+        <div class="field"><label>Email</label><input type="email" name="email" required></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label>Company (optional)</label><input type="text" name="company"></div>
+        <div class="field"><label>Service</label><select name="service"><option>Fashion</option><option>E-commerce</option><option>Product</option><option>Jewelry</option><option>Watches</option><option>Ghost Mannequin</option><option>Color Correction</option><option>Other / Bulk</option></select></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label># of Images</label><input type="text" name="images" placeholder="e.g. 50"></div>
+        <div class="field"><label>Deadline</label><input type="text" name="deadline" placeholder="e.g. 3 days"></div>
+      </div>
+      <div class="field"><label>Project details</label><textarea name="message" placeholder="Tell us about your project, style and any sample links..."></textarea></div>
+      <button type="submit" class="btn btn-gold">Send &amp; Get Free Test Edit</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#" class="logo"><span class="mark" style="border:none;width:34px;height:34px"><svg viewBox="0 0 100 100" width="34" height="34" aria-hidden="true"><path d="M50 4 Q50 50 96 50 Q50 50 50 96 Q50 50 4 50 Q50 50 50 4 Z" fill="#c9a96a"/></svg></span>Retouch&nbsp;<span>Atelier</span></a>
+        <p>High-end post-production studio &amp; white-label retouching partner for brands, studios and photographers worldwide.</p>
+      </div>
+      <div class="foot-col"><h4>Services</h4><a href="/ghost-mannequin-service/">Ghost Mannequin Service</a><a href="/jewelry-retouching/">Jewelry Retouching</a><a href="/watch-retouching/">Watch Retouching</a><a href="/white-label-retouching/">White-Label Retouching</a><a href="#services">All services</a></div>
+      <div class="foot-col"><h4>Studio</h4><a href="#portfolio">Portfolio</a><a href="#process">Process</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a><a href="/privacy-policy/">Privacy Policy</a><a href="/terms/">Terms</a></div>
+      <div class="foot-col"><h4>Connect</h4><a href="#">Instagram</a><a href="#">LinkedIn</a></div>
+    </div>
+    <div class="foot-bot">
+      <span>&copy; 2026 Retouch Atelier. All rights reserved.</span>
+      <span>From $1/image &middot; 24h turnaround &middot; 100% satisfaction</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const hdr=document.getElementById('hdr');
+addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>30));
+const burger=document.getElementById('burger'),menu=document.getElementById('menu');
+burger.addEventListener('click',()=>menu.classList.toggle('open'));
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
+
+document.querySelectorAll('.filters button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelector('.filters .active').classList.remove('active');b.classList.add('active');
+  const f=b.dataset.f;
+  document.querySelectorAll('.port-item').forEach(it=>it.classList.toggle('hide',f!=='all'&&it.dataset.cat!==f));
+}));
+
+function initBA(el){
+  const clip=el.querySelector('[data-clip]'),h=el.querySelector('.handle');
+  const set=x=>{const r=el.getBoundingClientRect();let p=(x-r.left)/r.width;p=Math.max(0,Math.min(1,p));
+    clip.style.clipPath='inset(0 '+((1-p)*100)+'% 0 0)';h.style.left=(p*100)+'%';};
+  set(el.getBoundingClientRect().left+el.getBoundingClientRect().width*0.5);
+  let drag=false;
+  const dn=e=>{drag=true;set((e.touches?e.touches[0]:e).clientX)};
+  const mv=e=>{if(drag)set((e.touches?e.touches[0]:e).clientX)};
+  el.addEventListener('mousedown',dn);el.addEventListener('touchstart',dn,{passive:true});
+  addEventListener('mousemove',mv);el.addEventListener('touchmove',mv,{passive:true});
+  addEventListener('mouseup',()=>drag=false);el.addEventListener('touchend',()=>drag=false);
+  el.addEventListener('mousemove',e=>{if(!drag)return;});
+  // hover-to-reveal on desktop
+  el.addEventListener('mousemove',e=>{if(!('ontouchstart'in window))set(e.clientX)});
+}
+document.querySelectorAll('[data-ba]').forEach(initBA);
+addEventListener('resize',()=>document.querySelectorAll('[data-ba]').forEach(el=>{
+  const h=el.querySelector('.handle'),clip=el.querySelector('[data-clip]');
+  const p=parseFloat(h.style.left)/100||0.5;clip.style.clipPath='inset(0 '+((1-p)*100)+'% 0 0)';
+}));
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(r=>io.observe(r));
+var _hv=document.querySelector('.hero video');function _go(){if(_hv){_hv.muted=true;var p=_hv.play();if(p&&p.catch)p.catch(function(){});}}_go();document.addEventListener('click',_go,{once:true});
+</script>
+<script>
+(function(){
+var T={
+es:{
+"Services":"Servicios","Portfolio":"Portafolio","Process":"Proceso","Pricing":"Precios","Contact":"Contacto","Free Test Edit":"Prueba gratis",
+"High-End Post-Production Studio":"Estudio de postproducción de alta gama","The Difference":"La diferencia","What We Do":"Lo que hacemos","Before / After":"Antes / Después","How It Works":"Cómo funciona","Why Retouch Atelier":"Por qué Retouch Atelier","Studio Partnership":"Colaboración con estudios","Kind Words":"Testimonios","Enterprise":"Empresas","Try Before You Buy":"Pruébalo antes de comprar","Book a meeting":"Reserva una reunión","Start a Project":"Inicia un proyecto",
+"Flawless imagery,delivered on time.":"Imágenes impecables, entregadas a tiempo.",
+"Raw capture in.Editorial perfection out.":"Captura en bruto. Perfección editorial.",
+"E-commerce post-production, perfected.":"Postproducción de e-commerce, perfeccionada.",
+"Drag to see the difference.":"Arrastra para ver la diferencia.",
+"Simple, fast, reliable.":"Simple, rápido, confiable.",
+"The studio brands trust with their best frames.":"El estudio en el que las marcas confían sus mejores imágenes.",
+"Your white-label retouching partner.":"Tu socio de retoque en marca blanca.",
+"Loved by the people who care most.":"Amado por quienes más se preocupan.",
+"Simple, transparent pricing.":"Precios simples y transparentes.",
+"Send one image. Get it retouched free.":"Envía una imagen. Te la retocamos gratis.",
+"Schedule a consultation — your time, your way.":"Agenda una consulta — a tu manera y a tu hora.",
+"Let's make your images flawless.":"Hagamos tus imágenes impecables.",
+"Apparel & On-Model":"Ropa y en modelo","Product & Accessories":"Producto y accesorios","Clothing & Flat Lay":"Ropa y flat lay","Send Images":"Envía imágenes","We Retouch":"Retocamos","Review":"Revisión","Delivery":"Entrega","Consistent, on-brand quality":"Calidad consistente y fiel a tu marca","Fast, predictable turnaround":"Entrega rápida y predecible","Confidential & white-label":"Confidencial y marca blanca","Real, responsive support":"Soporte real y receptivo","Instant quote estimate":"Presupuesto instantáneo","For high-volume studios & global teams":"Para estudios de alto volumen y equipos globales",
+"Book a Consultation":"Reserva una consulta","Claim Your Free Test Edit":"Solicita tu edición de prueba gratis","Get a Free Test Edit":"Obtén una edición de prueba gratis","See More Work":"Ver más trabajos","Send & Get Free Test Edit":"Enviar y obtener edición gratis","View Portfolio":"Ver portafolio",
+"Service":"Servicio","Complexity":"Complejidad","Number of images":"Número de imágenes","Turnaround":"Plazo de entrega","Per image":"Por imagen","Estimated total":"Total estimado","Basic":"Básico","Standard":"Estándar","High-end":"Alta gama","Standard 24–48h":"Estándar 24–48h","Rush 12–24h (+30%)":"Urgente 12–24h (+30%)",
+"Get a ballpark in seconds. Your exact rate is confirmed after a free test edit.":"Obtén una estimación en segundos. Tu tarifa exacta se confirma tras una edición de prueba gratis.",
+"Pick a slot that suits you. We'll meet on Google Meet and map out how we can help.":"Elige el horario que más te convenga. Nos reuniremos por Google Meet y veremos cómo podemos ayudarte.",
+"/ image":"/ imagen","Per image, from":"Por imagen, desde","Avg. turnaround":"Entrega media","Satisfaction":"Satisfacción"
+},
+da:{
+"Services":"Ydelser","Portfolio":"Portfolio","Process":"Proces","Pricing":"Priser","Contact":"Kontakt","Free Test Edit":"Gratis test",
+"High-End Post-Production Studio":"High-end postproduktionsstudie","The Difference":"Forskellen","What We Do":"Det vi gør","Before / After":"Før / Efter","How It Works":"Sådan fungerer det","Why Retouch Atelier":"Hvorfor Retouch Atelier","Studio Partnership":"Studiepartnerskab","Kind Words":"Pæne ord","Enterprise":"Enterprise","Try Before You Buy":"Prøv før du køber","Book a meeting":"Book et møde","Start a Project":"Start et projekt",
+"Flawless imagery,delivered on time.":"Fejlfri billeder, leveret til tiden.",
+"Raw capture in.Editorial perfection out.":"Råt billede ind. Editorial perfektion ud.",
+"E-commerce post-production, perfected.":"E-commerce postproduktion, perfektioneret.",
+"Drag to see the difference.":"Træk for at se forskellen.",
+"Simple, fast, reliable.":"Enkelt, hurtigt, pålideligt.",
+"The studio brands trust with their best frames.":"Studiet, som brands betror deres bedste billeder.",
+"Your white-label retouching partner.":"Din white-label retoucheringspartner.",
+"Loved by the people who care most.":"Elsket af dem, der bekymrer sig mest.",
+"Simple, transparent pricing.":"Enkle, gennemsigtige priser.",
+"Send one image. Get it retouched free.":"Send ét billede. Få det retoucheret gratis.",
+"Schedule a consultation — your time, your way.":"Book en konsultation — din tid, din måde.",
+"Let's make your images flawless.":"Lad os gøre dine billeder fejlfri.",
+"Apparel & On-Model":"Tøj og på model","Product & Accessories":"Produkt og tilbehør","Clothing & Flat Lay":"Tøj og flat lay","Send Images":"Send billeder","We Retouch":"Vi retoucherer","Review":"Gennemgang","Delivery":"Levering","Consistent, on-brand quality":"Konsistent kvalitet, tro mod dit brand","Fast, predictable turnaround":"Hurtig, forudsigelig levering","Confidential & white-label":"Fortroligt og white-label","Real, responsive support":"Ægte, lydhør support","Instant quote estimate":"Øjeblikkeligt pristilbud","For high-volume studios & global teams":"Til studier med stort volumen og globale teams",
+"Book a Consultation":"Book en konsultation","Claim Your Free Test Edit":"Få din gratis prøveredigering","Get a Free Test Edit":"Få en gratis prøveredigering","See More Work":"Se mere arbejde","Send & Get Free Test Edit":"Send og få gratis redigering","View Portfolio":"Se portfolio",
+"Service":"Ydelse","Complexity":"Kompleksitet","Number of images":"Antal billeder","Turnaround":"Leveringstid","Per image":"Pr. billede","Estimated total":"Anslået total","Basic":"Basis","Standard":"Standard","High-end":"High-end","Standard 24–48h":"Standard 24–48t","Rush 12–24h (+30%)":"Haster 12–24t (+30%)",
+"Get a ballpark in seconds. Your exact rate is confirmed after a free test edit.":"Få et overslag på sekunder. Din præcise pris bekræftes efter en gratis prøveredigering.",
+"Pick a slot that suits you. We'll meet on Google Meet and map out how we can help.":"Vælg et tidspunkt, der passer dig. Vi mødes på Google Meet og finder ud af, hvordan vi kan hjælpe.",
+"/ image":"/ billede","Per image, from":"Pr. billede, fra","Avg. turnaround":"Gns. leveringstid","Satisfaction":"Tilfredshed"
+},
+de:{
+"Services":"Leistungen","Portfolio":"Portfolio","Process":"Ablauf","Pricing":"Preise","Contact":"Kontakt","Free Test Edit":"Gratis-Test",
+"High-End Post-Production Studio":"High-End-Postproduktionsstudio","The Difference":"Der Unterschied","What We Do":"Was wir tun","Before / After":"Vorher / Nachher","How It Works":"So funktioniert es","Why Retouch Atelier":"Warum Retouch Atelier","Studio Partnership":"Studio-Partnerschaft","Kind Words":"Kundenstimmen","Enterprise":"Enterprise","Try Before You Buy":"Erst testen, dann kaufen","Book a meeting":"Termin buchen","Start a Project":"Projekt starten",
+"Flawless imagery,delivered on time.":"Makellose Bilder, pünktlich geliefert.",
+"Raw capture in.Editorial perfection out.":"Rohaufnahme rein. Editorial-Perfektion raus.",
+"E-commerce post-production, perfected.":"E-Commerce-Postproduktion, perfektioniert.",
+"Drag to see the difference.":"Ziehen, um den Unterschied zu sehen.",
+"Simple, fast, reliable.":"Einfach, schnell, zuverlässig.",
+"The studio brands trust with their best frames.":"Das Studio, dem Marken ihre besten Aufnahmen anvertrauen.",
+"Your white-label retouching partner.":"Ihr White-Label-Retusche-Partner.",
+"Loved by the people who care most.":"Geliebt von denen, denen es am wichtigsten ist.",
+"Simple, transparent pricing.":"Einfache, transparente Preise.",
+"Send one image. Get it retouched free.":"Senden Sie ein Bild. Wir retuschieren es kostenlos.",
+"Schedule a consultation — your time, your way.":"Termin vereinbaren — Ihre Zeit, Ihre Wahl.",
+"Let's make your images flawless.":"Machen wir Ihre Bilder makellos.",
+"Apparel & On-Model":"Bekleidung & am Modell","Product & Accessories":"Produkt & Accessoires","Clothing & Flat Lay":"Kleidung & Flat Lay","Send Images":"Bilder senden","We Retouch":"Wir retuschieren","Review":"Prüfung","Delivery":"Lieferung","Consistent, on-brand quality":"Konsistente, markengerechte Qualität","Fast, predictable turnaround":"Schnelle, planbare Bearbeitung","Confidential & white-label":"Vertraulich & White-Label","Real, responsive support":"Echter, reaktionsschneller Support","Instant quote estimate":"Sofortige Preisschätzung","For high-volume studios & global teams":"Für Studios mit hohem Volumen & globale Teams",
+"Book a Consultation":"Beratung buchen","Claim Your Free Test Edit":"Kostenlose Testbearbeitung sichern","Get a Free Test Edit":"Kostenlose Testbearbeitung erhalten","See More Work":"Mehr Arbeiten ansehen","Send & Get Free Test Edit":"Senden & kostenlose Bearbeitung","View Portfolio":"Portfolio ansehen",
+"Service":"Leistung","Complexity":"Komplexität","Number of images":"Anzahl der Bilder","Turnaround":"Bearbeitungszeit","Per image":"Pro Bild","Estimated total":"Geschätzte Summe","Basic":"Basis","Standard":"Standard","High-end":"High-End","Standard 24–48h":"Standard 24–48 Std.","Rush 12–24h (+30%)":"Express 12–24 Std. (+30%)",
+"Get a ballpark in seconds. Your exact rate is confirmed after a free test edit.":"Erhalten Sie in Sekunden eine Schätzung. Ihr genauer Preis wird nach einer kostenlosen Testbearbeitung bestätigt.",
+"Pick a slot that suits you. We'll meet on Google Meet and map out how we can help.":"Wählen Sie einen passenden Termin. Wir treffen uns per Google Meet und besprechen, wie wir helfen können.",
+"/ image":"/ Bild","Per image, from":"Pro Bild, ab","Avg. turnaround":"Ø Bearbeitungszeit","Satisfaction":"Zufriedenheit"
+}
+};
+var SEL='#menu a, .eyebrow, h1, h2, h3, p.lead, a.btn, .price-sub, .qc-sub, .qc-row label, .qc-out .lbl, .qc-seg button, #book p, .price-amt small, .hero-trust span';
+function norm(s){return s.replace(/\s+/g,' ').trim();}
+function apply(lang){
+ document.querySelectorAll(SEL).forEach(function(el){
+  if(el.getAttribute('data-enh')===null||el.getAttribute('data-enh')===undefined){el.setAttribute('data-enh',el.innerHTML);el.setAttribute('data-enk',norm(el.textContent));}
+  if(lang==='en'){el.innerHTML=el.getAttribute('data-enh');return;}
+  var d=T[lang];var k=el.getAttribute('data-enk');
+  if(d&&d[k]!==undefined){el.textContent=d[k];}else{el.innerHTML=el.getAttribute('data-enh');}
+ });
+ try{localStorage.setItem('ra_lang',lang);}catch(e){}
+ document.documentElement.lang=lang;
+ var s=document.getElementById('langSel');if(s)s.value=lang;
+}
+function init(){
+ var s=document.getElementById('langSel');
+ if(s)s.addEventListener('change',function(){apply(this.value);});
+ var saved='en';try{saved=localStorage.getItem('ra_lang')||'en';}catch(e){}
+ if(saved!=='en')apply(saved); else if(s)s.value='en';
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+
+</body>
+</html>
