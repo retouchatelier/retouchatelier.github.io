@@ -41,3 +41,6 @@ footer p{color:var(--muted);font-size:.9rem;max-width:300px;margin-top:14px}
 .foot-bot{border-top:1px solid var(--line);padding-top:22px;color:var(--muted2);font-size:.8rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 .crumb{font-size:.78rem;color:var(--muted2);margin-bottom:20px}.crumb a{color:var(--gold)}
 @media(max-width:860px){.hero-grid{grid-template-columns:1fr;gap:40px}.feat-grid{grid-template-columns:1fr}.inc{columns:1}.foot-grid{grid-template-columns:1fr 1fr}.nav-links a:not(.nav-cta){display:none}}
+/* Plain hero on niche landing pages: hide single-image placeholder card */
+.hero-grid>div:has(>.ba>img:only-of-type){display:none}
+.hero-grid:has(>div>.ba>img:only-of-type){grid-template-columns:1fr}
