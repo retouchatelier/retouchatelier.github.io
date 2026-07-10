@@ -1,0 +1,22 @@
+name: strip-placeholder-heroes
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  strip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Strip placeholder hero images from landing pages
+        run: |
+          find . -name index.html -print0 | xargs -0 perl -0pi -e 's{<div><div class="ba" data-ba=""><img src="/assets/img/[^"]+" alt="[^"]*"><span class="tag a">After</span></div></div>}{}g'
+          perl -0pi -e 's|\Q.hero-grid>div:has(>.ba>img:only-of-type){display:none}\E\n||' assets/landing.css
+          perl -0pi -e 's|\Q.hero-grid:has(>div>.ba>img:only-of-type){grid-template-columns:1fr}\E|.hero-grid:has(>div:only-child){grid-template-columns:1fr}|' assets/landing.css
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --stat
+          git commit -m "Remove placeholder hero images from niche landing pages"
+          git push
