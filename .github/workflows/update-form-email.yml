@@ -1,0 +1,28 @@
+name: update-form-email
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Route form submissions to the gmail only (leave displayed site email unchanged)
+        run: |
+          # ONLY the FormSubmit backend action -> the gmail. The displayed contact email text stays as-is.
+          find . -name index.html -print0 | xargs -0 sed -i 's#formsubmit\.co/atelier@retouchatelier\.com#formsubmit.co/retouchatelier.studio@gmail.com#g'
+          # Remove the _cc so form leads land ONLY in the gmail (no duplicate copy)
+          find . -name index.html -print0 | xargs -0 perl -0pi -e 's/(name="_cc"\s+value=")[^"]*(")/${1}${2}/g'
+          echo "=== verification ==="
+          grep -o 'formsubmit.co/[^"]*' index.html | head
+          grep -o 'name="_cc" value="[^"]*"' index.html | head
+          echo "displayed email occurrences (should be unchanged):"
+          grep -o 'atelier@retouchatelier.com' index.html | wc -l
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --stat
+          git commit -m "Lead form: route submissions only to retouchatelier.studio@gmail.com"
+          git push
