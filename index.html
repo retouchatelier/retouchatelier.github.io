@@ -189,7 +189,7 @@
   .ci b{display:block;font-weight:500;margin-bottom:2px} .ci span{color:var(--muted);font-size:.92rem}
   form{background:var(--surface);border:1px solid var(--line);padding:40px;border-radius:4px}
   .frow{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  .field{margin-bottom:18px}
+  .field{margin-bottom:18px} .field-upload>label{display:block;margin-bottom:8px} .upload-hint{margin:8px 0 0;font-size:.72rem;letter-spacing:.02em;color:var(--muted);line-height:1.55} .field-upload uc-file-uploader-regular{display:block;width:100%;--uc-primary-rgb:201,169,106;--uc-primary-hover-rgb:226,205,157;--uc-primary-foreground-rgb:11,11,13;--uc-background-rgb:21,21,27;--uc-foreground-rgb:244,241,234;--uc-secondary-rgb:28,28,35;--uc-secondary-foreground-rgb:244,241,234;--uc-muted-rgb:168,163,153;--uc-border-rgb:64,64,72}
   label{display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
   input,select,textarea{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:13px 14px;border-radius:2px;font-family:var(--sans);font-size:.95rem;font-weight:300;transition:.25s}
   input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold)}
@@ -734,7 +734,7 @@ footer p{color:#94a3b8}
         <div class="field"><label># of Images</label><input type="text" name="images" placeholder="e.g. 50"></div>
         <div class="field"><label>Deadline</label><input type="text" name="deadline" placeholder="e.g. 3 days"></div>
       </div>
-      <div class="field"><label>Project details</label><textarea name="message" placeholder="Tell us about your project, style and any sample links..."></textarea></div>
+      <div class="field field-upload"><label>Upload sample images <span style="color:var(--muted);font-weight:400">(up to 5)</span></label><uc-config ctx-name="rt-up" pubkey="1ec70693eb8ea9ad0d7a" multiple="true" multiple-max="5" img-only="true" source-list="local, camera, url, dropbox, gdrive"></uc-config><uc-file-uploader-regular ctx-name="rt-up"></uc-file-uploader-regular><uc-upload-ctx-provider ctx-name="rt-up" id="rt-upctx"></uc-upload-ctx-provider><input type="hidden" name="Sample Images" id="rt-imgs"><p class="upload-hint">Drag &amp; drop, or add from your computer, phone camera/gallery, or cloud. JPG · PNG · WEBP · TIFF.</p></div><div class="field"><label>Project details</label><textarea name="message" placeholder="Tell us about your project, style and any sample links..."></textarea></div>
       <button type="submit" class="btn btn-gold">Send &amp; Get Free Test Edit</button>
     </form>
   </div>
@@ -890,5 +890,5 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 </script>
 
-</body>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@1/web/uc-file-uploader-regular.min.css"><script type="module">import * as UC from "https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@1/web/uc-file-uploader-regular.min.js";UC.defineComponents(UC);var _c=document.getElementById("rt-upctx");if(_c){_c.addEventListener("change",function(e){var ents=(e.detail&&e.detail.allEntries)||[];var urls=ents.filter(function(f){return f.status==="success";}).map(function(f){return f.cdnUrl;});var h=document.getElementById("rt-imgs");if(h){h.value=urls.join(", ");}});}</script></body>
 </html>
