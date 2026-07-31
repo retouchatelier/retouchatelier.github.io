@@ -483,11 +483,11 @@ h2{font-size:clamp(1.55rem,2.85vw,2.1rem)}
 .scrolldown{color:rgba(255,255,255,.7)}
 /* header */
 header{background:transparent;border-bottom:1px solid transparent}
-header .logo{color:#fff}.logo .mark{display:none}
-header .logo span{color:#93c5fd}
+header:not(.scrolled) .logo{color:#fff}.logo .mark{display:none}
+header:not(.scrolled) .logo span{color:#93c5fd}
 header .logo .mark svg path,header .logo svg path{fill:currentColor}
-header .nav-links a{color:rgba(255,255,255,.90)}
-header .nav-links a:hover{color:#fff}
+header:not(.scrolled) .nav-links a{color:rgba(255,255,255,.90)}
+header:not(.scrolled) .nav-links a:hover{color:#fff}
 header.scrolled{background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(15,23,42,.06)}
 header.scrolled .logo{color:var(--navy)}
 header.scrolled .logo span{color:var(--gold)}
