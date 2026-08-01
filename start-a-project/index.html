@@ -1,0 +1,199 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Start a Project | Instant Retouching Quote &mdash; Retouch Atelier</title>
+<meta name="description" content="Pick your service, volume and turnaround and see your per-image retouching rate instantly. Upload up to 10 images and get a confirmed quote within one business day.">
+<link rel="canonical" href="https://retouchatelier.com/start-a-project/"><meta property="og:type" content="website"><meta property="og:url" content="https://retouchatelier.com/start-a-project/"><meta property="og:site_name" content="Retouch Atelier"><meta property="og:title" content="Start a Project | Instant Retouching Quote"><meta property="og:description" content="See your per-image rate instantly, upload your images, and get a confirmed quote within one business day."><meta property="og:image" content="https://retouchatelier.com/assets/og-cover.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Start a Project | Instant Retouching Quote"><meta name="twitter:description" content="See your per-image rate instantly, upload your images, and get a confirmed quote within one business day."><meta name="twitter:image" content="https://retouchatelier.com/assets/og-cover.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/landing.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@v1/web/uc-file-uploader-regular.min.css">
+<style>
+.q-hero{padding:118px 0 34px;text-align:center}
+.q-hero h1{font-family:var(--serif);font-size:clamp(2.1rem,4.4vw,3.2rem);font-weight:500;color:var(--navy);line-height:1.12;margin:0 0 16px}
+.q-hero p{max-width:640px;margin:0 auto;color:var(--muted);font-size:1.02rem;line-height:1.75}
+.q-grid{display:grid;grid-template-columns:1fr 372px;gap:34px;align-items:start;padding-bottom:22px}
+.q-card{border:1px solid var(--line);border-radius:4px;padding:34px;background:#fff}
+.q-step{margin-bottom:34px}
+.q-step:last-child{margin-bottom:0}
+.q-lab{display:flex;align-items:center;gap:11px;margin-bottom:16px}
+.q-num{width:25px;height:25px;flex:none;border-radius:50%;background:var(--navy);color:#fff;font-size:.76rem;font-weight:600;display:flex;align-items:center;justify-content:center}
+.q-lab h3{margin:0;font-size:1.02rem;font-weight:600;color:var(--navy);letter-spacing:-.01em}
+.q-hint{font-size:.84rem;color:var(--muted);margin:-8px 0 14px 36px;line-height:1.6}
+.q-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.q-opt{position:relative;display:block;cursor:pointer}
+.q-opt input{position:absolute;opacity:0;pointer-events:none}
+.q-opt span{display:block;border:1px solid var(--line);border-radius:4px;padding:14px 16px;transition:.2s;font-size:.92rem;color:var(--text)}
+.q-opt span b{display:block;font-weight:600;margin-bottom:3px}
+.q-opt span i{font-style:normal;color:var(--muted);font-size:.82rem}
+.q-opt:hover span{border-color:#c7d2e4}
+.q-opt input:checked+span{border-color:var(--gold);box-shadow:0 0 0 3px rgba(29,78,216,.11)}
+.q-opt input:focus-visible+span{border-color:var(--gold);box-shadow:0 0 0 3px rgba(29,78,216,.22)}
+.q-vol{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.q-vol input[type=number]{width:132px;padding:13px 14px;border:1px solid var(--line);border-radius:4px;font:inherit;font-size:.95rem;color:var(--text)}
+.q-vol input[type=number]:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(29,78,216,.12)}
+.q-chips{display:flex;gap:7px;flex-wrap:wrap}
+.q-chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 15px;font:inherit;font-size:.82rem;color:var(--muted);cursor:pointer;transition:.2s}
+.q-chip:hover{border-color:#c7d2e4;color:var(--text)}
+.q-out{border:1px solid var(--line);border-radius:4px;padding:30px;background:#fbfcfe;position:sticky;top:96px}
+.q-out .eyebrow{margin-bottom:18px}
+.q-price{font-family:var(--serif);font-size:3.1rem;font-weight:500;color:var(--navy);line-height:1;letter-spacing:-.02em}
+.q-price small{font-size:.94rem;font-family:'Inter',sans-serif;color:var(--muted);font-weight:400;letter-spacing:0}
+.q-total{margin-top:16px;padding-top:16px;border-top:1px solid var(--line);font-size:.92rem;color:var(--muted);line-height:1.7}
+.q-total b{color:var(--navy);font-weight:600}
+.q-tier{display:inline-block;margin-top:14px;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.q-incl{margin:22px 0 0;padding:0;list-style:none}
+.q-incl li{position:relative;padding-left:20px;font-size:.86rem;color:var(--muted);line-height:1.6;margin-bottom:8px}
+.q-incl li:before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.q-note{margin-top:20px;padding-top:18px;border-top:1px solid var(--line);font-size:.79rem;color:var(--muted2,#94a3b8);line-height:1.65}
+.q-trust{display:flex;gap:26px;flex-wrap:wrap;justify-content:center;padding:30px 0 8px;border-top:1px solid var(--line)}
+.q-trust span{font-size:.82rem;color:var(--muted);letter-spacing:.02em}
+@media(max-width:960px){.q-grid{grid-template-columns:1fr}.q-out{position:static}.q-hero{padding:104px 0 28px}}
+@media(max-width:560px){.q-opts{grid-template-columns:1fr}.q-card{padding:24px 20px}.q-out{padding:24px 20px}.q-price{font-size:2.6rem}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://retouchatelier.com/"},{"@type":"ListItem","position":2,"name":"Start a Project","item":"https://retouchatelier.com/start-a-project/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this the final price?","acceptedAnswer":{"@type":"Answer","text":"No - it is an honest estimate built from our published rates. The final number depends on how much work each image actually needs. A flat-lay on white and a ring with eight stones both count as one image, but they are not the same job. We look at your images, confirm a rate, and hold it for the run."}},{"@type":"Question","name":"Why does volume change the rate so much?","acceptedAnswer":{"@type":"Answer","text":"Because setup cost is fixed. Building a style spec, briefing retouchers and calibrating QC costs the same whether you send 20 images or 2,000. At higher volume that cost spreads thinner, and we can reserve daily capacity instead of slotting you in."}},{"@type":"Question","name":"What counts as rush?","acceptedAnswer":{"@type":"Answer","text":"Anything you need back inside 24 hours. It costs 25% more because it means pulling retouchers off scheduled work and running QC out of sequence. If your deadline is genuinely 3-5 days, take the relaxed rate."}},{"@type":"Question","name":"Do I have to pay for the test edit?","acceptedAnswer":{"@type":"Answer","text":"No. Send five images, get them back edited, and judge the quality before anything is agreed. If the work is not right, you owe nothing and you keep the files."}},{"@type":"Question","name":"What if my project mixes services?","acceptedAnswer":{"@type":"Answer","text":"Most do. Pick whichever service is the bulk of the work for the estimate, mention the rest in the notes, and we price the mix properly in the confirmation."}},{"@type":"Question","name":"How do I send large files?","acceptedAnswer":{"@type":"Answer","text":"The uploader on this page handles up to 10 images at full original quality. For a full shoot, we set up a shared folder in whatever you already use - Drive, Dropbox, WeTransfer or FTP."}}]}</script>
+</head><body>
+<header id="h"><div class="wrap nav">
+<a href="/" class="logo"><svg viewBox="0 0 100 100" width="32" height="32" aria-hidden="true" style="flex:none"><path d="M50 4 Q50 50 96 50 Q50 50 50 96 Q50 50 4 50 Q50 50 50 4 Z" fill="#c9a96a"/></svg>Retouch&nbsp;<span>Atelier</span></a>
+<nav class="nav-links"><a href="/#services">Services</a><a href="/#portfolio">Portfolio</a><a href="/#pricing">Pricing</a><a href="/#contact">Contact</a><a href="/#contact" class="nav-cta">Free Test Edit</a></nav>
+</div></header>
+<main>
+<section class="q-hero"><div class="wrap">
+<div class="eyebrow">Instant Quote</div>
+<h1>Start a project</h1>
+<p>Pick the service, tell us the volume and the deadline, and your rate appears on the right. No form-filling before you see a number, no &ldquo;contact us for pricing&rdquo;.</p>
+</div></section>
+
+<section><div class="wrap"><div class="q-grid">
+
+<div class="q-card">
+  <div class="q-step">
+    <div class="q-lab"><div class="q-num">1</div><h3>What do you need done?</h3></div>
+    <div class="q-opts"><label class="q-opt"><input type="radio" name="svc" value="clip" data-min="0.5" data-max="2" data-label="Clipping path / background removal"><span><b>Clipping path / background removal</b><i>$0.50 &ndash; $2 per image</i></span></label><label class="q-opt"><input type="radio" name="svc" value="colour" data-min="0.5" data-max="2" data-label="Colour correction"><span><b>Colour correction</b><i>$0.50 &ndash; $2 per image</i></span></label><label class="q-opt"><input type="radio" name="svc" value="ghost" data-min="1" data-max="3" data-label="Ghost mannequin (neck joint)"><span><b>Ghost mannequin (neck joint)</b><i>$1 &ndash; $3 per image</i></span></label><label class="q-opt"><input type="radio" name="svc" value="product" data-min="1" data-max="4" data-label="Product retouching (e-commerce)" checked><span><b>Product retouching (e&#8209;commerce)</b><i>$1 &ndash; $4 per image</i></span></label><label class="q-opt"><input type="radio" name="svc" value="jewel" data-min="2" data-max="8" data-label="Jewellery - watch retouching"><span><b>Jewellery &amp; watch retouching</b><i>$2 &ndash; $8 per image</i></span></label><label class="q-opt"><input type="radio" name="svc" value="beauty" data-min="10" data-max="30" data-label="High-end beauty - editorial"><span><b>High&#8209;end beauty &amp; editorial</b><i>$10 &ndash; $30 per image</i></span></label></div>
+  </div>
+
+  <div class="q-step">
+    <div class="q-lab"><div class="q-num">2</div><h3>How many images?</h3></div>
+    <p class="q-hint">Per month if this is ongoing work, or the size of the batch if it is a one-off. Volume is what moves the rate.</p>
+    <div class="q-vol">
+      <input type="number" id="qVol" min="1" max="100000" step="1" value="200" aria-label="Number of images">
+      <div class="q-chips">
+        <button type="button" class="q-chip" data-v="25">25</button>
+        <button type="button" class="q-chip" data-v="100">100</button>
+        <button type="button" class="q-chip" data-v="500">500</button>
+        <button type="button" class="q-chip" data-v="2000">2,000+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-step">
+    <div class="q-lab"><div class="q-num">3</div><h3>How fast do you need it?</h3></div>
+    <div class="q-opts"><label class="q-opt"><input type="radio" name="turn" value="rush" data-mult="1.25" data-label="24 hours"><span><b>24 hours</b><i>Rush &mdash; +25%</i></span></label><label class="q-opt"><input type="radio" name="turn" value="std" data-mult="1" data-label="24-48 hours" checked><span><b>24&ndash;48 hours</b><i>Standard</i></span></label><label class="q-opt"><input type="radio" name="turn" value="relax" data-mult="0.9" data-label="3-5 days"><span><b>3&ndash;5 days</b><i>Relaxed &mdash; &minus;10%</i></span></label></div>
+  </div>
+
+  <div class="q-step">
+    <div class="q-lab"><div class="q-num">4</div><h3>Send it over</h3></div>
+    <p class="q-hint">Attach up to 10 images and we confirm the exact rate within one business day. First five images are edited free, so you see the quality before any money moves.</p>
+    <form class="lpf" action="https://formsubmit.co/retouchatelier.studio@gmail.com" method="POST">
+<input type="hidden" name="_subject" value="New project quote request">
+<input type="hidden" name="_template" value="table"><input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_next" value="https://retouchatelier.com/thank-you/">
+<input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
+<input type="hidden" name="Service" id="fSvc" value="">
+<input type="hidden" name="Image volume" id="fVol" value="">
+<input type="hidden" name="Turnaround" id="fTurn" value="">
+<input type="hidden" name="Estimated rate" id="fRate" value="">
+<input type="hidden" name="Estimated total" id="fTotal" value="">
+<div class="frow"><div class="fld"><label>Name</label><input type="text" name="Name" required></div>
+<div class="fld"><label>Email</label><input type="email" name="Email" required></div></div>
+<div class="fld"><label>Company or studio (optional)</label><input type="text" name="Company"></div>
+<div class="fld"><label>Upload your images (up to 10)</label>
+<uc-config ctx-name="sp" pubkey="1ec70693eb8ea9ad0d7a" multiple="true" multiple-max="10" img-only="true" store="true" source-list="local, camera, url, dropbox, gdrive"></uc-config>
+<uc-file-uploader-regular ctx-name="sp"></uc-file-uploader-regular>
+<uc-upload-ctx-provider ctx-name="sp" id="ctx-sp"></uc-upload-ctx-provider>
+<input type="hidden" name="Sample Images" id="imgs-sp"></div>
+<div class="fld"><label>Anything we should know? (optional)</label><textarea name="Message" placeholder="Deadline, style references, file naming, what the images are for..."></textarea></div>
+<button type="submit">Send my images and confirm the rate</button>
+<p class="fnote">No payment, no commitment. First five images edited free. We reply within one business day.</p></form>
+  </div>
+</div>
+
+<aside class="q-out">
+  <div class="eyebrow">Your estimate</div>
+  <div class="q-price" id="qRate">$1.50 <small>per image</small></div>
+  <div class="q-tier" id="qTier">Volume tier</div>
+  <div class="q-total" id="qTotal"></div>
+  <ul class="q-incl">
+    <li>Batch QC on every run, not spot checks</li>
+    <li>Unbranded, white-label delivery</li>
+    <li>NDA signed on request before files move</li>
+    <li>Revisions included until it matches the brief</li>
+  </ul>
+  <p class="q-note">An estimate, not a quote. Complexity moves the number &mdash; a clean pack shot sits at the bottom of the range, a multi-stone macro at the top. We confirm the real rate after seeing your images, and we never revise it upward mid-job.</p>
+</aside>
+
+</div></div></section>
+
+<section><div class="wrap"><div class="q-trust">
+<span>30+ retouchers</span><span>24&ndash;48h standard turnaround</span><span>NDA-backed</span><span>White-label delivery</span><span>No setup fees, no contracts</span>
+</div></div></section>
+
+<section><div class="wrap"><div class="eyebrow">FAQ</div>
+<details><summary>Is this the final price?</summary><p>No &mdash; it is an honest estimate built from our published rates. The final number depends on how much work each image actually needs. A flat-lay on white and a ring with eight stones both count as one image, but they are not the same job. We look at your images, confirm a rate, and hold it for the run.</p></details>
+<details><summary>Why does volume change the rate so much?</summary><p>Because setup cost is fixed. Building a style spec, briefing retouchers and calibrating QC costs the same whether you send 20 images or 2,000. At higher volume that cost spreads thinner, and we can reserve daily capacity instead of slotting you in. That is the discount &mdash; it is not a bulk gimmick.</p></details>
+<details><summary>What counts as rush?</summary><p>Anything you need back inside 24 hours. It costs 25% more because it means pulling retouchers off scheduled work and running QC out of sequence. If your deadline is genuinely 3&ndash;5 days, take the relaxed rate &mdash; we would rather you pay less and we schedule better.</p></details>
+<details><summary>Do I have to pay for the test edit?</summary><p>No. Send five images, get them back edited, and judge the quality before anything is agreed. If the work is not right, you owe nothing and you keep the files.</p></details>
+<details><summary>What if my project mixes services?</summary><p>Most do. Pick whichever service is the bulk of the work for the estimate, mention the rest in the notes, and we price the mix properly in the confirmation.</p></details>
+<details><summary>How do I send large files?</summary><p>The uploader on this page handles up to 10 images at full original quality. For a full shoot, we set up a shared folder in whatever you already use &mdash; Drive, Dropbox, WeTransfer or FTP.</p></details>
+</div></section>
+</main>
+<footer><div class="wrap"><div class="foot-grid">
+<div><a href="/" class="logo"><svg viewBox="0 0 100 100" width="32" height="32" aria-hidden="true" style="flex:none"><path d="M50 4 Q50 50 96 50 Q50 50 50 96 Q50 50 4 50 Q50 50 50 4 Z" fill="#c9a96a"/></svg>Retouch&nbsp;<span>Atelier</span></a><p>High-end post-production studio &amp; white-label retouching partner for brands, studios and photographers worldwide.</p></div>
+<div class="foot-col"><h4>Services</h4><a href="/ghost-mannequin-service/">Ghost Mannequin</a><a href="/jewelry-retouching/">Jewelry Retouching</a><a href="/watch-retouching/">Watch Retouching</a><a href="/white-label-retouching/">White-Label Retouching</a><a href="/#services">All services</a></div>
+<div class="foot-col"><h4>For</h4><a href="/product-studios/">Product Studios</a><a href="/creative-agencies/">Creative Agencies</a><a href="/fashion-studios/">Fashion Studios</a><a href="/ghost-mannequin-production/">Ghost Mannequin</a><a href="/white-label-partners/">White-Label Partners</a></div>
+<div class="foot-col"><h4>Studio</h4><a href="/company/">Company</a><a href="/security/">Security</a><a href="/#portfolio">Portfolio</a><a href="/#pricing">Pricing</a><a href="/#contact">Contact</a><a href="/#contact">Free Test Edit</a><a href="/privacy-policy/">Privacy Policy</a><a href="/terms/">Terms</a></div>
+</div><div class="foot-bot"><div class="foot-social"><a href="https://www.instagram.com/retouchatelier.studio/" target="_blank" rel="noopener">Instagram</a><a href="https://www.pinterest.com/retouchatelierstudio/" target="_blank" rel="noopener">Pinterest</a><a href="https://www.behance.net/retouchatelier" target="_blank" rel="noopener">Behance</a><a href="mailto:retouchatelier.studio@gmail.com">Email us</a></div><span>&copy; 2026 Retouch Atelier. All rights reserved.</span><span>White-label &amp; NDA-backed &middot; 24&ndash;48h turnaround &middot; Free test edit</span></div></div></footer>
+<script>
+(function(){
+  var TIERS=[
+    {min:1,    pos:1.00, name:'Under 50 images'},
+    {min:50,   pos:0.75, name:'50 to 199 images'},
+    {min:200,  pos:0.50, name:'200 to 499 images'},
+    {min:500,  pos:0.25, name:'500 to 1,999 images'},
+    {min:2000, pos:0.00, name:'2,000+ images'}
+  ];
+  var vol=document.getElementById('qVol');
+  var rateEl=document.getElementById('qRate'), tierEl=document.getElementById('qTier'), totEl=document.getElementById('qTotal');
+  function money(n){ return '$'+n.toFixed(2).replace(/\.00$/,''); }
+  function group(n){ return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,','); }
+  function tierFor(v){ var t=TIERS[0]; for(var i=0;i<TIERS.length;i++){ if(v>=TIERS[i].min) t=TIERS[i]; } return t; }
+  function calc(){
+    var s=document.querySelector('input[name=svc]:checked');
+    var t=document.querySelector('input[name=turn]:checked');
+    if(!s||!t) return;
+    var v=parseInt(vol.value,10); if(!v||v<1){ v=1; }
+    if(v>100000){ v=100000; vol.value=100000; }
+    var mn=parseFloat(s.dataset.min), mx=parseFloat(s.dataset.max);
+    var tier=tierFor(v);
+    var base=mn+(mx-mn)*tier.pos;
+    var rate=base*parseFloat(t.dataset.mult);
+    rate=Math.round(rate*100)/100;
+    if(rate<mn) rate=mn;
+    var total=Math.round(rate*v);
+    rateEl.innerHTML=money(rate)+' <small>per image</small>';
+    tierEl.textContent=tier.name;
+    totEl.innerHTML='<b>'+group(v)+'</b> images &middot; <b>'+money(total)+'</b> estimated total<br>Delivered in '+t.dataset.label.toLowerCase()+'.';
+    document.getElementById('fSvc').value=s.dataset.label;
+    document.getElementById('fVol').value=group(v);
+    document.getElementById('fTurn').value=t.dataset.label;
+    document.getElementById('fRate').value=money(rate)+' per image';
+    document.getElementById('fTotal').value=money(total);
+  }
+  document.querySelectorAll('input[name=svc],input[name=turn]').forEach(function(el){ el.addEventListener('change',calc); });
+  vol.addEventListener('input',calc);
+  document.querySelectorAll('.q-chip').forEach(function(b){ b.addEventListener('click',function(){ vol.value=b.dataset.v; calc(); vol.focus(); }); });
+  calc();
+})();
+</script>
+<script type="module">import * as UC from "https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@1/web/uc-file-uploader-regular.min.js";UC.defineComponents(UC);var _c=document.getElementById("ctx-sp");if(_c){_c.addEventListener("change",function(e){var en=(e.detail&&e.detail.allEntries)||[];var u=en.filter(function(f){return f.status==="success";}).map(function(f){var n=(f.name||"").trim();var c=f.cdnUrl||"";if(c&&c.slice(-1)!=="/")c+="/";return n?c+encodeURIComponent(n):c;});var h=document.getElementById("imgs-sp");if(h){h.value=u.join(", ");}});}</script>
+</body></html>
