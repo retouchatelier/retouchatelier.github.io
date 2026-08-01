@@ -47,7 +47,7 @@ footer p{color:#94a3b8;font-size:.9rem;max-width:320px;margin-top:14px;line-heig
 footer .logo{color:#fff}footer .logo span{color:#93c5fd}footer .logo svg path{fill:#93c5fd}
 .foot-col h4{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#93c5fd;margin-bottom:16px;font-weight:500}
 .foot-col a{display:block;color:#cbd5e1;font-size:.9rem;margin-bottom:10px;transition:color .2s ease}.foot-col a:hover{color:#fff}
-.foot-bot{border-top:1px solid rgba(255,255,255,.13);padding-top:22px;color:#94a3b8;font-size:.8rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.foot-social{display:flex;gap:18px;align-items:center}.foot-social a{color:#94a3b8;text-decoration:none;transition:.25s}.foot-social a:hover{color:#fff}.foot-bot{border-top:1px solid rgba(255,255,255,.13);padding-top:22px;color:#94a3b8;font-size:.8rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 .crumb{font-size:.8rem;color:var(--muted2);margin-bottom:20px}.crumb a{color:var(--gold)}
 body .legal h2{color:var(--navy)}
 body .legal p,body .legal li{color:var(--muted)}
