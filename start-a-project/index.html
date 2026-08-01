@@ -11,7 +11,7 @@
 .q-hero{padding:118px 0 34px;text-align:center}
 .q-hero h1{font-family:var(--serif);font-size:clamp(2.1rem,4.4vw,3.2rem);font-weight:500;color:var(--navy);line-height:1.12;margin:0 0 16px}
 .q-hero p{max-width:640px;margin:0 auto;color:var(--muted);font-size:1.02rem;line-height:1.75}
-.q-grid{display:grid;grid-template-columns:1fr 372px;gap:34px;align-items:start;padding-bottom:22px}
+.q-grid{display:grid;grid-template-columns:1fr 372px;grid-template-areas:"a c" "b c";gap:34px;align-items:start;padding-bottom:22px}.q-card{grid-area:a}.q-card2{grid-area:b;margin-top:-14px}.q-out{grid-area:c}.q-step:empty{display:none}
 .q-card{border:1px solid var(--line);border-radius:4px;padding:34px;background:#fff}
 .q-step{margin-bottom:34px}
 .q-step:last-child{margin-bottom:0}
@@ -47,7 +47,7 @@
 .q-note{margin-top:20px;padding-top:18px;border-top:1px solid var(--line);font-size:.79rem;color:var(--muted2,#94a3b8);line-height:1.65}
 .q-trust{display:flex;gap:26px;flex-wrap:wrap;justify-content:center;padding:30px 0 8px;border-top:1px solid var(--line)}
 .q-trust span{font-size:.82rem;color:var(--muted);letter-spacing:.02em}
-.q-hero+section{padding-top:6px}@media(max-width:960px){.q-grid{grid-template-columns:1fr}.q-out{position:static}.q-hero{padding:104px 0 28px}}
+.q-hero+section{padding-top:6px}@media(max-width:960px){.q-grid{grid-template-columns:1fr;grid-template-areas:"a" "c" "b"}.q-card2{margin-top:0}.q-out{position:static}.q-hero{padding:104px 0 28px}}
 @media(max-width:560px){.q-opts{grid-template-columns:1fr}.q-card{padding:24px 20px}.q-out{padding:24px 20px}.q-price{font-size:2.6rem}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://retouchatelier.com/"},{"@type":"ListItem","position":2,"name":"Start a Project","item":"https://retouchatelier.com/start-a-project/"}]}</script>
@@ -92,7 +92,7 @@
   </div>
 
   <div class="q-step">
-    <div class="q-lab"><div class="q-num">4</div><h3>Send it over</h3></div>
+    </div></div><div class="q-card q-card2"><div class="q-step"><div class="q-lab"><div class="q-num">4</div><h3>Send it over</h3></div>
     <p class="q-hint">Attach up to 10 images and we confirm the exact rate within one business day. First five images are edited free, so you see the quality before any money moves.</p>
     <form class="lpf" action="https://formsubmit.co/retouchatelier.studio@gmail.com" method="POST">
 <input type="hidden" name="_subject" value="New project quote request">
