@@ -47,7 +47,7 @@
 .q-note{margin-top:20px;padding-top:18px;border-top:1px solid var(--line);font-size:.79rem;color:var(--muted2,#94a3b8);line-height:1.65}
 .q-trust{display:flex;gap:26px;flex-wrap:wrap;justify-content:center;padding:30px 0 8px;border-top:1px solid var(--line)}
 .q-trust span{font-size:.82rem;color:var(--muted);letter-spacing:.02em}
-@media(max-width:960px){.q-grid{grid-template-columns:1fr}.q-out{position:static}.q-hero{padding:104px 0 28px}}
+.q-hero+section{padding-top:6px}@media(max-width:960px){.q-grid{grid-template-columns:1fr}.q-out{position:static}.q-hero{padding:104px 0 28px}}
 @media(max-width:560px){.q-opts{grid-template-columns:1fr}.q-card{padding:24px 20px}.q-out{padding:24px 20px}.q-price{font-size:2.6rem}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://retouchatelier.com/"},{"@type":"ListItem","position":2,"name":"Start a Project","item":"https://retouchatelier.com/start-a-project/"}]}</script>
@@ -69,7 +69,7 @@
 <div class="q-card">
   <div class="q-step">
     <div class="q-lab"><div class="q-num">1</div><h3>What do you need done?</h3></div>
-    <div class="q-opts"><label class="q-opt"><input type="radio" name="svc" value="clip" data-min="0.5" data-max="2" data-label="Clipping path / background removal"><span><b>Clipping path / background removal</b><i>$0.50 &ndash; $2 per image</i></span></label><label class="q-opt"><input type="radio" name="svc" value="colour" data-min="0.5" data-max="2" data-label="Colour correction"><span><b>Colour correction</b><i>$0.50 &ndash; $2 per image</i></span></label><label class="q-opt"><input type="radio" name="svc" value="ghost" data-min="1" data-max="3" data-label="Ghost mannequin (neck joint)"><span><b>Ghost mannequin (neck joint)</b><i>$1 &ndash; $3 per image</i></span></label><label class="q-opt"><input type="radio" name="svc" value="product" data-min="1" data-max="4" data-label="Product retouching (e-commerce)" checked><span><b>Product retouching (e&#8209;commerce)</b><i>$1 &ndash; $4 per image</i></span></label><label class="q-opt"><input type="radio" name="svc" value="jewel" data-min="2" data-max="8" data-label="Jewellery - watch retouching"><span><b>Jewellery &amp; watch retouching</b><i>$2 &ndash; $8 per image</i></span></label><label class="q-opt"><input type="radio" name="svc" value="beauty" data-min="10" data-max="30" data-label="High-end beauty - editorial"><span><b>High&#8209;end beauty &amp; editorial</b><i>$10 &ndash; $30 per image</i></span></label></div>
+    <div class="q-opts"><label class="q-opt"><input type="radio" name="svc" value="clip" data-min="0.5" data-max="2" data-label="Clipping path / background removal"><span><b>Clipping path / background removal</b><i>$0.50 &ndash; $2 per image</i></span></label><label class="q-opt"><input type="radio" name="svc" value="colour" data-min="0.5" data-max="2" data-label="Colour correction"><span><b>Colour correction</b><i>$0.50 &ndash; $2 per image</i></span></label><label class="q-opt"><input type="radio" name="svc" value="ghost" data-min="1" data-max="3" data-label="Ghost mannequin (neck joint)"><span><b>Ghost mannequin (neck joint)</b><i>$1 &ndash; $3 per image</i></span></label><label class="q-opt"><input type="radio" name="svc" value="product" data-min="1" data-max="4" data-label="Product retouching (e-commerce)" checked><span><b>Product retouching (e&#8209;commerce)</b><i>$1 &ndash; $4 per image</i></span></label><label class="q-opt"><input type="radio" name="svc" value="jewel" data-min="2" data-max="8" data-label="Jewellery &amp; watch retouching"><span><b>Jewellery &amp; watch retouching</b><i>$2 &ndash; $8 per image</i></span></label><label class="q-opt"><input type="radio" name="svc" value="beauty" data-min="10" data-max="30" data-label="High-end beauty &amp; editorial"><span><b>High&#8209;end beauty &amp; editorial</b><i>$10 &ndash; $30 per image</i></span></label></div>
   </div>
 
   <div class="q-step">
@@ -164,7 +164,7 @@
   ];
   var vol=document.getElementById('qVol');
   var rateEl=document.getElementById('qRate'), tierEl=document.getElementById('qTier'), totEl=document.getElementById('qTotal');
-  function money(n){ return '$'+n.toFixed(2).replace(/\.00$/,''); }
+  function money(n){ var s=n.toFixed(2).replace(/\.00$/,''); var p=s.split('.'); p[0]=p[0].replace(/\B(?=(\d{3})+(?!\d))/g,','); return '$'+p.join('.'); }
   function group(n){ return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,','); }
   function tierFor(v){ var t=TIERS[0]; for(var i=0;i<TIERS.length;i++){ if(v>=TIERS[i].min) t=TIERS[i]; } return t; }
   function calc(){
