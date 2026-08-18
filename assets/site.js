@@ -28,3 +28,33 @@
     }, true);
   }
 })();
+
+/* Before/after sliders on service pages (markup uses data-ba2). */
+document.addEventListener('DOMContentLoaded', function () {
+  [].forEach.call(document.querySelectorAll('[data-ba2]'), function (box) {
+    var before = box.querySelector('[data-clip]');
+    var handle = box.querySelector('.handle');
+    if (!before) return;
+    function set(pct) {
+      if (pct < 2) pct = 2;
+      if (pct > 98) pct = 98;
+      before.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
+      if (handle) handle.style.left = pct + '%';
+    }
+    function track(e) {
+      var r = box.getBoundingClientRect();
+      set(((e.clientX - r.left) / r.width) * 100);
+    }
+    var dragging = false;
+    box.addEventListener('pointerdown', function (e) {
+      dragging = true;
+      if (box.setPointerCapture) { try { box.setPointerCapture(e.pointerId) } catch (err) {} }
+      track(e); e.preventDefault();
+    });
+    box.addEventListener('pointermove', function (e) {
+      if (dragging || e.pointerType === 'mouse') track(e);
+    });
+    window.addEventListener('pointerup', function () { dragging = false });
+    set(50);
+  });
+});
