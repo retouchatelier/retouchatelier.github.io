@@ -34,6 +34,18 @@
       }
     }, true);
   }
+
+
+  /* Language switcher: which languages visitors actually ask for.
+     Fires language_switch with the language they picked. */
+  document.addEventListener("change", function (e) {
+    var el = e.target;
+    if (!el || el.id !== "langSel") return;
+    gtag("event", "language_switch", {
+      language_to: el.value,
+      page_path: location.pathname
+    });
+  }, true);
 })();
 
 /* Before/after sliders on service pages (markup uses data-ba2). */
