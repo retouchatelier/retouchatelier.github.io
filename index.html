@@ -162,7 +162,7 @@
   .quote{background:var(--surface);border:1px solid var(--line);padding:36px 32px;border-radius:4px;transition:.35s}
   .quote:hover{transform:translateY(-4px);border-color:var(--gold-dim)}
   .quote .stars{color:var(--gold);letter-spacing:3px;margin-bottom:16px}
-  .testi .quote b{display:block;font-family:var(--serif);font-size:1.12rem;line-height:1.35;margin-bottom:12px}.testi .quote span{display:block;font-size:.9rem;line-height:1.7;color:var(--muted)}.testi .quote span a{color:var(--gold);text-decoration:none}.quote p{font-family:var(--serif);font-size:1.22rem;font-style:italic;line-height:1.5;margin-bottom:22px}
+  .testi-grid{counter-reset:tq}.testi .quote{counter-increment:tq}.testi .quote b::before{content:counter(tq,decimal-leading-zero);display:block;font-family:var(--serif);font-size:.78rem;letter-spacing:.18em;color:var(--gold);margin-bottom:12px;font-weight:400}.testi .quote b{display:block;font-family:var(--serif);font-size:1.12rem;line-height:1.35;margin-bottom:12px}.testi .quote span{display:block;font-size:.9rem;line-height:1.7;color:var(--muted)}.testi .quote span a{color:var(--gold);text-decoration:none}.quote p{font-family:var(--serif);font-size:1.22rem;font-style:italic;line-height:1.5;margin-bottom:22px}
   .quote .who b{color:var(--text);font-weight:500;display:block;font-family:var(--sans);font-size:.92rem}
   .quote .who span{font-size:.82rem;color:var(--muted)}
 
