@@ -2,6 +2,13 @@
    Every page loads this one file, so any future tag
    (Google Ads, Meta pixel, etc.) goes here only. */
 (function(){
+    /* Our own testing traffic never reaches Analytics.
+     Turn on  in a browser console:  localStorage.setItem("ra_notrack","1")
+     Turn off in a browser console:  localStorage.removeItem("ra_notrack")   */
+  try {
+    if (window.localStorage && localStorage.getItem("ra_notrack") === "1") return;
+  } catch (e) {}
+
   var GA = "G-PYDSP0K07R";
   var s = document.createElement("script");
   s.async = true;
