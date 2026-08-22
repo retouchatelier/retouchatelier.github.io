@@ -162,7 +162,7 @@
   .quote{background:var(--surface);border:1px solid var(--line);padding:36px 32px;border-radius:4px;transition:.35s}
   .quote:hover{transform:translateY(-4px);border-color:var(--gold-dim)}
   .quote .stars{color:var(--gold);letter-spacing:3px;margin-bottom:16px}
-  .quote p{font-family:var(--serif);font-size:1.22rem;font-style:italic;line-height:1.5;margin-bottom:22px}
+  .testi .quote b{display:block;font-family:var(--serif);font-size:1.12rem;line-height:1.35;margin-bottom:12px}.testi .quote span{display:block;font-size:.9rem;line-height:1.7;color:var(--muted)}.testi .quote span a{color:var(--gold);text-decoration:none}.quote p{font-family:var(--serif);font-size:1.22rem;font-style:italic;line-height:1.5;margin-bottom:22px}
   .quote .who b{color:var(--text);font-weight:500;display:block;font-family:var(--sans);font-size:.92rem}
   .quote .who span{font-size:.82rem;color:var(--muted)}
 
@@ -426,17 +426,7 @@
 </section>
 
 <!-- TESTIMONIALS -->
-<section class="testi" style="display:none">
-  <div class="wrap">
-    <div class="sec-head reveal"><div class="eyebrow">Kind Words</div><h2>Loved by the people who care most.</h2></div>
-    <div class="testi-grid">
-      <div class="quote reveal"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"The consistency across 2,000+ product shots was flawless. They're now our default retouching partner."</p><div class="who"><b>Sample — E-commerce Brand</b><span>Head of Creative</span></div></div>
-      <div class="quote reveal"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Skin work that looks real, not plastic. Exactly what our editorial clients expect."</p><div class="who"><b>Sample — Fashion Studio</b><span>Studio Manager</span></div></div>
-      <div class="quote reveal"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Jewelry retouching at a level we couldn't find anywhere else. Fast, too."</p><div class="who"><b>Sample — Jewelry Label</b><span>Founder</span></div></div>
-    </div>
-    <p class="note">Placeholder testimonials — we'll replace these with your real client reviews as they come in.</p>
-  </div>
-</section>
+<section class="testi"><div class="wrap"><div class="sec-head reveal"><div class="eyebrow">What you can hold us to</div><h2>Promises you can test before you commit.</h2></div><div class="testi-grid"><div class="quote reveal"><b>Five images, retouched free</b><span>No card, no contract, no call first. Send five of your own files and we return them finished, so you can judge our edges and colour on your products rather than ours.</span></div><div class="quote reveal"><b>A named project manager</b><span>Three project managers. One of them owns your account, knows your style guide and replies in your time zone &mdash; you are never writing to a shared inbox.</span></div><div class="quote reveal"><b>Checked before it ships, not after</b><span>Six QC managers across three shifts. Every batch is reviewed before it comes back to you, which is why image #4,000 still matches image #1.</span></div><div class="quote reveal"><b>An NDA before any file moves</b><span>We sign first, then work. Confidential by default and white-label on request, so you can put our work out under your own name. <a href="/security/">How we handle your files</a>.</span></div><div class="quote reveal"><b>Rates published, not quoted</b><span>From $0.50 to $30 an image depending on the work. The full table is on the <a href="/blog/photo-retouching-cost/">cost guide</a>, and the <a href="/start-a-project/">quote page</a> gives you a figure without speaking to anyone.</span></div><div class="quote reveal"><b>Your files removed on schedule</b><span>Secure transfer, access limited to the retouchers on your job, and deletion on the schedule we agree with you &mdash; not whenever we get round to it.</span></div></div><p class="note">Most of our work is under NDA, so we do not publish client names or logos &mdash; and we would rather show you our work than quote ourselves. Send five images and judge the result.</p></div></section>
 
 <!-- PRICING -->
 <section id="pricing">
@@ -828,7 +818,7 @@ var _hv=document.querySelector('.hero video');function _go(){if(_hv){_hv.muted=t
 var T={
 es:{
 "Services":"Servicios","Portfolio":"Portafolio","Process":"Proceso","Pricing":"Precios","Contact":"Contacto","Free Test Edit":"Prueba gratis",
-"High-End Post-Production Studio":"Estudio de postproducción de alta gama","The Difference":"La diferencia","What We Do":"Lo que hacemos","Before / After":"Antes / Después","How It Works":"Cómo funciona","Why Retouch Atelier":"Por qué Retouch Atelier","Studio Partnership":"Colaboración con estudios","Kind Words":"Testimonios","Enterprise":"Empresas","Try Before You Buy":"Pruébalo antes de comprar","Book a meeting":"Reserva una reunión","Start a Project":"Inicia un proyecto",
+"High-End Post-Production Studio":"Estudio de postproducción de alta gama","The Difference":"La diferencia","What We Do":"Lo que hacemos","Before / After":"Antes / Después","How It Works":"Cómo funciona","Why Retouch Atelier":"Por qué Retouch Atelier","Studio Partnership":"Colaboración con estudios","What you can hold us to":"Nuestros compromisos","Enterprise":"Empresas","Try Before You Buy":"Pruébalo antes de comprar","Book a meeting":"Reserva una reunión","Start a Project":"Inicia un proyecto",
 "Your Production Partner for High-Volume Retouching.":"Tu socio de producción para retoque de alto volumen.",
 "Raw capture in.Editorial perfection out.":"Captura en bruto. Perfección editorial.",
 "E-commerce post-production, perfected.":"Postproducción de e-commerce, perfeccionada.",
@@ -836,7 +826,7 @@ es:{
 "Simple, fast, reliable.":"Simple, rápido, confiable.",
 "The studio brands trust with their best frames.":"El estudio en el que las marcas confían sus mejores imágenes.",
 "Your white-label retouching partner.":"Tu socio de retoque en marca blanca.",
-"Loved by the people who care most.":"Amado por quienes más se preocupan.",
+"Promises you can test before you commit.":"Promesas que puede comprobar antes de contratar.",
 "Enterprise pricing, built around your volume.":"Precios simples y transparentes.",
 "Send 5 images. Get them retouched free.":"Envía una imagen. Te la retocamos gratis.",
 "Schedule a consultation — your time, your way.":"Agenda una consulta — a tu manera y a tu hora.",
@@ -850,7 +840,7 @@ es:{
 },
 da:{
 "Services":"Ydelser","Portfolio":"Portfolio","Process":"Proces","Pricing":"Priser","Contact":"Kontakt","Free Test Edit":"Gratis test",
-"High-End Post-Production Studio":"High-end postproduktionsstudie","The Difference":"Forskellen","What We Do":"Det vi gør","Before / After":"Før / Efter","How It Works":"Sådan fungerer det","Why Retouch Atelier":"Hvorfor Retouch Atelier","Studio Partnership":"Studiepartnerskab","Kind Words":"Pæne ord","Enterprise":"Enterprise","Try Before You Buy":"Prøv før du køber","Book a meeting":"Book et møde","Start a Project":"Start et projekt",
+"High-End Post-Production Studio":"High-end postproduktionsstudie","The Difference":"Forskellen","What We Do":"Det vi gør","Before / After":"Før / Efter","How It Works":"Sådan fungerer det","Why Retouch Atelier":"Hvorfor Retouch Atelier","Studio Partnership":"Studiepartnerskab","What you can hold us to":"Vores forpligtelser","Enterprise":"Enterprise","Try Before You Buy":"Prøv før du køber","Book a meeting":"Book et møde","Start a Project":"Start et projekt",
 "Your Production Partner for High-Volume Retouching.":"Din produktionspartner til retouchering i stor skala.",
 "Raw capture in.Editorial perfection out.":"Råt billede ind. Editorial perfektion ud.",
 "E-commerce post-production, perfected.":"E-commerce postproduktion, perfektioneret.",
@@ -858,7 +848,7 @@ da:{
 "Simple, fast, reliable.":"Enkelt, hurtigt, pålideligt.",
 "The studio brands trust with their best frames.":"Studiet, som brands betror deres bedste billeder.",
 "Your white-label retouching partner.":"Din white-label retoucheringspartner.",
-"Loved by the people who care most.":"Elsket af dem, der bekymrer sig mest.",
+"Promises you can test before you commit.":"Løfter, du kan afprøve, før du binder dig.",
 "Enterprise pricing, built around your volume.":"Enkle, gennemsigtige priser.",
 "Send 5 images. Get them retouched free.":"Send ét billede. Få det retoucheret gratis.",
 "Schedule a consultation — your time, your way.":"Book en konsultation — din tid, din måde.",
@@ -872,7 +862,7 @@ da:{
 },
 de:{
 "Services":"Leistungen","Portfolio":"Portfolio","Process":"Ablauf","Pricing":"Preise","Contact":"Kontakt","Free Test Edit":"Gratis-Test",
-"High-End Post-Production Studio":"High-End-Postproduktionsstudio","The Difference":"Der Unterschied","What We Do":"Was wir tun","Before / After":"Vorher / Nachher","How It Works":"So funktioniert es","Why Retouch Atelier":"Warum Retouch Atelier","Studio Partnership":"Studio-Partnerschaft","Kind Words":"Kundenstimmen","Enterprise":"Enterprise","Try Before You Buy":"Erst testen, dann kaufen","Book a meeting":"Termin buchen","Start a Project":"Projekt starten",
+"High-End Post-Production Studio":"High-End-Postproduktionsstudio","The Difference":"Der Unterschied","What We Do":"Was wir tun","Before / After":"Vorher / Nachher","How It Works":"So funktioniert es","Why Retouch Atelier":"Warum Retouch Atelier","Studio Partnership":"Studio-Partnerschaft","What you can hold us to":"Unsere Zusagen","Enterprise":"Enterprise","Try Before You Buy":"Erst testen, dann kaufen","Book a meeting":"Termin buchen","Start a Project":"Projekt starten",
 "Your Production Partner for High-Volume Retouching.":"Ihr Produktionspartner für Retusche in großem Umfang.",
 "Raw capture in.Editorial perfection out.":"Rohaufnahme rein. Editorial-Perfektion raus.",
 "E-commerce post-production, perfected.":"E-Commerce-Postproduktion, perfektioniert.",
@@ -880,7 +870,7 @@ de:{
 "Simple, fast, reliable.":"Einfach, schnell, zuverlässig.",
 "The studio brands trust with their best frames.":"Das Studio, dem Marken ihre besten Aufnahmen anvertrauen.",
 "Your white-label retouching partner.":"Ihr White-Label-Retusche-Partner.",
-"Loved by the people who care most.":"Geliebt von denen, denen es am wichtigsten ist.",
+"Promises you can test before you commit.":"Versprechen, die Sie testen können, bevor Sie sich binden.",
 "Enterprise pricing, built around your volume.":"Einfache, transparente Preise.",
 "Send 5 images. Get them retouched free.":"Senden Sie ein Bild. Wir retuschieren es kostenlos.",
 "Schedule a consultation — your time, your way.":"Termin vereinbaren — Ihre Zeit, Ihre Wahl.",
