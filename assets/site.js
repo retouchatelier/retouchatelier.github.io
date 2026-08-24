@@ -66,6 +66,35 @@
     });
   }, true);
 })();
+/* Ask every enquiry where it came from.
+   Partnerships, communities and word of mouth leave no UTM,
+   so this one field is the only honest attribution we have. */
+(function () {
+  function addField() {
+    var forms = document.querySelectorAll('form[action*="formsubmit"]');
+    for (var i = 0; i < forms.length; i++) {
+      var f = forms[i];
+      if (f.querySelector('[name="Heard about us"]')) continue;
+      var wrap = document.createElement("div");
+      wrap.className = "fld";
+      var id = "ra-heard-" + i;
+      var lab = document.createElement("label");
+      lab.setAttribute("for", id);
+      lab.textContent = "How did you hear about us?";
+      var inp = document.createElement("input");
+      inp.type = "text"; inp.id = id; inp.name = "Heard about us";
+      inp.autocomplete = "off";
+      inp.placeholder = "Search, LinkedIn, a colleague, somewhere else";
+      wrap.appendChild(lab); wrap.appendChild(inp);
+      var btn = f.querySelector('button[type="submit"], button:not([type]), input[type="submit"]');
+      if (btn && btn.parentNode === f) f.insertBefore(wrap, btn);
+      else f.appendChild(wrap);
+    }
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", addField);
+  else addField();
+})();
+
 
 /* Before/after sliders on service pages (markup uses data-ba2). */
 document.addEventListener('DOMContentLoaded', function () {
