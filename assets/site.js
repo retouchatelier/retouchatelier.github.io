@@ -125,3 +125,36 @@ document.addEventListener('DOMContentLoaded', function () {
     set(50);
   });
 });
+
+/* Nav link repair, 24 August 2026.
+   The homepage was trimmed to seven sections and no longer has the
+   #portfolio, #pricing or #enterprise anchors, but the nav and footer on
+   every page still point at them. Send those links to the real pages.
+   Remove this block once the HTML on each page has been corrected. */
+(function () {
+  var MAP = {
+    "#portfolio":  "/portfolio/",
+    "#pricing":    "/pricing/",
+    "#enterprise": "/#contact"
+  };
+  function repair() {
+    var links = document.getElementsByTagName("a");
+    for (var i = 0; i < links.length; i++) {
+      var href = links[i].getAttribute("href");
+      if (!href) continue;
+      var frag = null;
+      for (var k in MAP) {
+        if (href.slice(-k.length) === k) { frag = k; break; }
+      }
+      if (!frag) continue;
+      var base = href.slice(0, href.length - frag.length);
+      if (base === "" || base === "/" ||
+          base === "https://retouchatelier.com/" ||
+          base === "http://retouchatelier.com/") {
+        links[i].setAttribute("href", MAP[frag]);
+      }
+    }
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", repair);
+  else repair();
+})();
