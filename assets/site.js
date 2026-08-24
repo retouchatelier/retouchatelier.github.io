@@ -5,6 +5,19 @@
     /* Our own testing traffic never reaches Analytics.
      Turn on  in a browser console:  localStorage.setItem("ra_notrack","1")
      Turn off in a browser console:  localStorage.removeItem("ra_notrack")   */
+  /* One-tap switch for our own devices, phones included.
+     Turn OFF analytics on a device:  retouchatelier.com/?notrack=1
+     Turn it back ON:                 retouchatelier.com/?notrack=0   */
+  try {
+    if (location.search.indexOf("notrack=1") > -1) {
+      localStorage.setItem("ra_notrack", "1");
+      alert("Analytics is now OFF on this device. Visits from here will not be counted.");
+    } else if (location.search.indexOf("notrack=0") > -1) {
+      localStorage.removeItem("ra_notrack");
+      alert("Analytics is now ON for this device.");
+    }
+  } catch (e) {}
+
   try {
     if (window.localStorage && localStorage.getItem("ra_notrack") === "1") return;
   } catch (e) {}
