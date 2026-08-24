@@ -9,12 +9,18 @@
      Turn OFF analytics on a device:  retouchatelier.com/?notrack=1
      Turn it back ON:                 retouchatelier.com/?notrack=0   */
   try {
-    if (location.search.indexOf("notrack=1") > -1) {
-      localStorage.setItem("ra_notrack", "1");
-      alert("Analytics is now OFF on this device. Visits from here will not be counted.");
-    } else if (location.search.indexOf("notrack=0") > -1) {
-      localStorage.removeItem("ra_notrack");
-      alert("Analytics is now ON for this device.");
+    var _nt = location.search.indexOf("notrack=1") > -1 ? 1
+            : location.search.indexOf("notrack=0") > -1 ? 0 : -1;
+    if (_nt > -1) {
+      if (_nt) localStorage.setItem("ra_notrack", "1");
+      else localStorage.removeItem("ra_notrack");
+      document.addEventListener("DOMContentLoaded", function () {
+        var n = document.createElement("div");
+        n.textContent = _nt ? "Analytics is now OFF on this device." : "Analytics is now ON for this device.";
+        n.setAttribute("style", "position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:99999;background:#0b0b0d;color:#fff;font:14px/1.5 system-ui,sans-serif;padding:12px 20px;border-radius:3px;box-shadow:0 6px 24px rgba(0,0,0,.3)");
+        document.body.appendChild(n);
+        setTimeout(function () { n.remove(); }, 5000);
+      });
     }
   } catch (e) {}
 
