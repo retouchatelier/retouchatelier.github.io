@@ -1,0 +1,85 @@
+name: retire-free-test-edit
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "report = list matches only. apply = rewrite and push."
+        required: true
+        default: "report"
+        type: choice
+        options: [report, apply]
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Report current occurrences
+        run: |
+          echo "=== files containing a free-test reference ==="
+          grep -rl -i -E 'free test|five images|5 images|risk-free|no commitment|Try before you buy' --include='*.html' . | sort | tee /tmp/files.txt | wc -l
+          echo
+          echo "=== distinct matching fragments (trimmed) ==="
+          grep -rho -i -E '.{0,60}(free test|five images|5 images|risk-free|no commitment|Try before you buy).{0,80}' --include='*.html' . \
+            | sed 's/[[:space:]]\+/ /g' | sort -u | head -80
+
+      - name: Apply replacements
+        if: ${{ inputs.mode == 'apply' }}
+        run: |
+          set -e
+          FILES=$(find . -name '*.html' -not -path './.git/*')
+
+          # --- shared CTA band (every page) ---
+          perl -0pi -e 's{<div class="eyebrow">Try before you buy</div>}{<div class="eyebrow">Start a conversation</div>}g' $FILES
+          perl -0pi -e 's{<h2>Send 5 images\. Get them retouched <span class="gold">free\.</span></h2>}{<h2>Tell us the volume\. We will tell you <span class="gold">honestly\.</span></h2>}g' $FILES
+          perl -0pi -e 's{See our quality risk-free &mdash; no commitment, no card\.}{Monthly volume, categories, and where post-production is slipping\.}g' $FILES
+          perl -0pi -e 's{<label>Upload your images \(up to 5\)</label>}{<label>Sample images (optional)</label>}g' $FILES
+          perl -0pi -e 's{<label>What do you need\? \(optional\)</label>}{<label>Volume, categories and current turnaround</label>}g' $FILES
+          perl -0pi -e 's{placeholder="Volume, turnaround, style notes\.\.\."}{placeholder="e.g. 30,000 images a month, apparel and footwear, ghost mannequin plus colour correction..."}g' $FILES
+          perl -0pi -e 's{<button type="submit">Send my free test edit</button>}{<button type="submit">Send enquiry</button>}g' $FILES
+          perl -0pi -e 's{<p class="fnote">No payment, no commitment\. We reply within one business day\.</p>}{<p class="fnote">We reply within one business day\. If we cannot take the volume, we will say so\.</p>}g' $FILES
+
+          # --- nav and footer ---
+          perl -0pi -e 's{class="nav-cta">Free Test Edit</a>}{class="nav-cta">Talk to the studio</a>}g' $FILES
+          perl -0pi -e 's{&middot; Free test edit</span>}{&middot; Retouched by hand, never by AI</span>}g' $FILES
+
+          # --- form plumbing ---
+          perl -0pi -e 's{value="Free test edit request"}{value="Studio enquiry"}g' $FILES
+          perl -0pi -e 's{s\.value="Free test edit &mdash; "\+t;}{s.value="Enquiry &mdash; "+t;}g' $FILES
+          perl -0pi -e 's{s\.value="Free test edit — "\+t;}{s.value="Enquiry — "+t;}g' $FILES
+
+          # --- buttons and links that promise a free edit ---
+          perl -0pi -e 's{>Get a Free Test Edit<}{>Talk to the studio<}g' $FILES
+          perl -0pi -e 's{>Send &amp; Get Free Test Edit<}{>Send enquiry<}g' $FILES
+          perl -0pi -e 's{>Send & Get Free Test Edit<}{>Send enquiry<}g' $FILES
+          perl -0pi -e 's{>Free Test Edit<}{>Talk to the studio<}g' $FILES
+
+          # --- homepage prose ---
+          perl -0pi -e 's{Send five images and judge the result in six hours\.}{Send your volume and categories, and we will tell you honestly whether we have the capacity\.}g' $FILES
+          perl -0pi -e 's{Five images, retouched free}{A paid test batch, not a free sample}g' $FILES
+          perl -0pi -e 's{No card, no contract, no call first\. Send five of your own files and we return them finished, so you can judge our edges and colour on your products rather than ours\.}{For buyers at catalogue volume we prefer a paid test batch of fifty to a hundred files, run through the ordinary pipeline on an ordinary shift\. It costs a little, it finishes quickly, and it shows you what six hundred a day actually looks like &mdash; not what our best retoucher can do with an afternoon\.}g' $FILES
+
+          # --- FAQ answers and schema in the cost post ---
+          perl -0pi -e 's{<summary>Do you offer a free test edit\?</summary><p>Yes &mdash; send 5 images and we&#39;ll retouch it free so you can judge quality before ordering\.</p>}{<summary>Do you offer a free test edit?</summary><p>For buyers at catalogue volume we prefer a paid test batch of fifty to a hundred files, run through the ordinary pipeline. It costs a little and it shows you what a real run looks like rather than what one retoucher can do with an afternoon.</p>}g' $FILES
+          perl -0pi -e 's{"name": "Do you offer a free test edit\?", "acceptedAnswer": \{"@type": "Answer", "text": "Yes, send 5 images and we&#39;ll retouch it free so you can judge quality before ordering\."\}\}}{"name": "Do you offer a free test edit?", "acceptedAnswer": \{"\@type": "Answer", "text": "For buyers at catalogue volume we prefer a paid test batch of fifty to a hundred files, run through the ordinary pipeline, rather than a small free sample."\}\}}g' $FILES
+          perl -0pi -e 's{Start with a <b>free test edit</b> to judge quality before paying\.}{Ask for a <b>paid test batch</b> of fifty to a hundred files, run on an ordinary shift\.}g' $FILES
+
+          echo "=== remaining occurrences after replacement ==="
+          grep -rho -i -E '.{0,60}(free test|five images|5 images|risk-free|no commitment|Try before you buy).{0,80}' --include='*.html' . \
+            | sed 's/[[:space:]]\+/ /g' | sort -u | head -60
+          echo "=== count ==="
+          grep -rl -i -E 'free test|five images|5 images' --include='*.html' . | wc -l
+
+      - name: Commit and push
+        if: ${{ inputs.mode == 'apply' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --stat
+          git commit -m "Retire the free test edit CTA: qualify on volume, offer a paid test batch" || echo "no changes"
+          git push
