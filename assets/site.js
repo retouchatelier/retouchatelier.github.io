@@ -161,3 +161,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /* HubSpot Conversations - live chat. Portal 246735879. */
 (function(){if(location.search.indexOf('ra_notrack=1')>-1)return;var s=document.createElement('script');s.id='hs-script-loader';s.async=true;s.defer=true;s.src='https://js-na2.hs-scripts.com/246735879.js';document.head.appendChild(s);})();
+
+/* Studio clock loader. */
+(function(){var s=document.createElement('script');s.src='/assets/clock.js';s.defer=true;document.head.appendChild(s);})();
