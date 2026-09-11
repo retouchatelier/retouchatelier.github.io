@@ -189,17 +189,21 @@
     var s = document.createElement("style");
     s.id = "ra-form-css";
     s.textContent =
-      ".ra-sel{width:100%;padding:13px 14px;border:1px solid var(--line,#e2e8f0);" +
-      "border-radius:8px;background:var(--surface,#fff);color:var(--text,#0f172a);" +
-      "font-size:.95rem;font-family:inherit;line-height:1.3;-webkit-appearance:none;" +
-      "-moz-appearance:none;appearance:none;background-image:url(\"data:image/svg+xml;" +
-      "charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E" +
-      "%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2394a3b8' stroke-width='1.6'/%3E" +
-      "%3C/svg%3E\");background-repeat:no-repeat;background-position:right 14px center;" +
+      ".ra-sel,.ra-tel{width:100%;box-sizing:border-box;padding:12px 14px;" +
+      "border:1px solid var(--line,#e2e8f0);border-radius:8px;" +
+      "background:var(--surface,#fff);color:var(--text,#0f172a);" +
+      "font-size:.95rem;font-family:inherit;line-height:1.4}" +
+      ".ra-sel{-webkit-appearance:none;-moz-appearance:none;appearance:none;" +
+      "background-image:url(\"data:image/svg+xml;charset=utf8,%3Csvg xmlns=" +
+      "'http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' " +
+      "fill='none' stroke='%2394a3b8' stroke-width='1.6'/%3E%3C/svg%3E\");" +
+      "background-repeat:no-repeat;background-position:right 14px center;" +
       "padding-right:38px}" +
-      ".ra-sel:focus{outline:none;border-color:var(--gold,#1d4ed8)}" +
+      ".ra-sel:focus,.ra-tel:focus{outline:none;border-color:var(--gold,#1d4ed8)}" +
       ".ra-sel:invalid{color:var(--muted2,#94a3b8)}" +
-      ".ra-hid{display:none}";
+      ".ra-tel::placeholder{color:var(--muted2,#94a3b8)}" +
+      ".ra-hid{display:none}" +
+      "@media(max-width:640px){.ra-row{grid-template-columns:1fr}}";
     document.head.appendChild(s);
   }
 
@@ -259,6 +263,16 @@
     if (a) f.insertBefore(node, a); else f.appendChild(node);
   }
 
+  /* Two per line, like the Name/Email row the pages already use. */
+  function row(f, a, b) {
+    var r = document.createElement("div");
+    r.className = "frow ra-row";
+    r.appendChild(a);
+    if (b) r.appendChild(b);
+    put(f, r);
+    return r;
+  }
+
   function guessService(f) {
     var h = f.querySelector('input[name="Service"]');
     if (h && h.value) return h.value;
@@ -285,21 +299,11 @@
       if (old) old.parentNode.removeChild(old);
       var sid = "ra-svc-" + n;
       var svc = select(sid, "Service", "Choose the service you need", SERVICES, chosen);
-      put(f, field("Which service do you need?", svc, sid));
-
       var vid = "ra-vol-" + n;
       var vol = select(vid, "Image volume", "Choose a monthly volume", [["", VOLUME]], "");
-      put(f, field("How many images a month?", vol, vid));
-    }
-
-    /* 4. Phone. Optional, on purpose — asking for it is how forms die. */
-    if (!f.querySelector('input[name="Phone"]')) {
-      var pid = "ra-tel-" + n;
-      var tel = document.createElement("input");
-      tel.type = "tel"; tel.id = pid; tel.name = "Phone";
-      tel.autocomplete = "tel";
-      tel.placeholder = "With country code";
-      put(f, field("Phone or WhatsApp (optional)", tel, pid));
+      row(f,
+        field("Which service do you need?", svc, sid),
+        field("How many images a month?", vol, vid));
     }
 
     /* 5. Where they came from. A list, so it can be counted.
@@ -313,12 +317,24 @@
     }
     var hid = "ra-heard-" + n;
     var heard = select(hid, "Heard about us", "Choose one", [["", HEARD]], "");
-    put(f, field("How did you hear about us?", heard, hid));
+
+    /* 4. Phone. Optional, on purpose — demanding it is how forms die.
+       Sits beside the source question so the row stays two-up. */
+    var telField = null;
+    if (!f.querySelector('input[name="Phone"]')) {
+      var pid = "ra-tel-" + n;
+      var tel = document.createElement("input");
+      tel.type = "tel"; tel.id = pid; tel.name = "Phone";
+      tel.autocomplete = "tel"; tel.className = "ra-tel";
+      tel.placeholder = "With country code";
+      telField = field("Phone or WhatsApp (optional)", tel, pid);
+    }
+    row(f, field("How did you hear about us?", heard, hid), telField);
 
     var oid = "ra-heard-other-" + n;
     var other = document.createElement("input");
     other.type = "text"; other.id = oid; other.name = "Heard about us - detail";
-    other.autocomplete = "off";
+    other.autocomplete = "off"; other.className = "ra-tel";
     other.placeholder = "Where exactly? It helps us more than you think";
     other.disabled = true;
     var otherWrap = field("Tell us where", other, oid);
@@ -346,6 +362,93 @@
   else run();
   /* Some pages build their form after load. Catch those too. */
   setTimeout(run, 1200);
+})();
+
+/* LinkedIn, put where a B2B buyer actually looks for it.
+   Three places: the footer row on every page, the "Follow" line that
+   named LinkedIn without linking to it, and the Organization schema,
+   so Google knows the page and the site are the same business. */
+(function () {
+  var LI = "https://www.linkedin.com/company/retouch-atelier/";
+
+  /* 1. Footer. First in the row — for this buyer it outranks the rest. */
+  function foot() {
+    if (document.querySelector('footer a[href*="linkedin.com"]')) return;
+    var ig = document.querySelector('footer a[href*="instagram.com"]');
+    if (!ig || !ig.parentNode) return;
+    var a = document.createElement("a");
+    a.href = LI;
+    a.textContent = "LinkedIn";
+    a.target = "_blank";
+    a.rel = "noopener";
+    if (ig.className) a.className = ig.className;
+    ig.parentNode.insertBefore(a, ig);
+  }
+
+  /* 2. "Follow — Instagram · LinkedIn" was words, not links.
+        Telling a buyer you are on LinkedIn and giving them nowhere to
+        click is worse than not mentioning it. */
+  function words() {
+    var els = document.querySelectorAll("span, p, li, div");
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (el.children.length) continue;
+      if (el.getAttribute("data-ra-li") === "1") continue;
+      var t = (el.textContent || "").replace(/\s+/g, " ").trim();
+      if (t.indexOf("LinkedIn") === -1) continue;
+      if (el.closest && el.closest("a")) continue;
+      var m = t.match(/^(Instagram)\s*[·•|,]\s*(LinkedIn)$/);
+      if (m) {
+        el.setAttribute("data-ra-li", "1");
+        el.innerHTML =
+          '<a href="https://www.instagram.com/retouchatelier.studio/" ' +
+          'target="_blank" rel="noopener">Instagram</a> &middot; ' +
+          '<a href="' + LI + '" target="_blank" rel="noopener">LinkedIn</a>';
+      } else if (t === "LinkedIn") {
+        el.setAttribute("data-ra-li", "1");
+        el.innerHTML =
+          '<a href="' + LI + '" target="_blank" rel="noopener">LinkedIn</a>';
+      }
+    }
+  }
+
+  /* 3. Organization schema. sameAs is how Google ties a website and a
+        LinkedIn page to one entity. Instagram, Pinterest and Behance are
+        already listed; LinkedIn was not, and /company/ had no list at all. */
+  function schema() {
+    var s = document.querySelectorAll('script[type="application/ld+json"]');
+    for (var i = 0; i < s.length; i++) {
+      var data;
+      try { data = JSON.parse(s[i].textContent); } catch (e) { continue; }
+      var nodes = Array.isArray(data) ? data : [data];
+      var touched = false;
+      for (var j = 0; j < nodes.length; j++) {
+        var n = nodes[j];
+        if (!n || typeof n !== "object") continue;
+        var type = n["@type"];
+        type = Array.isArray(type) ? type.join(" ") : String(type || "");
+        if (type.indexOf("Organization") === -1 &&
+            type.indexOf("ProfessionalService") === -1 &&
+            type.indexOf("LocalBusiness") === -1) continue;
+        var same = n.sameAs;
+        if (typeof same === "string") same = [same];
+        if (!Array.isArray(same)) same = [];
+        var found = false;
+        for (var k = 0; k < same.length; k++) {
+          if (String(same[k]).indexOf("linkedin.com") > -1) found = true;
+        }
+        if (found) continue;
+        same.push(LI);
+        n.sameAs = same;
+        touched = true;
+      }
+      if (touched) s[i].textContent = JSON.stringify(data);
+    }
+  }
+
+  function run() { foot(); words(); schema(); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run);
+  else run();
 })();
 
 
