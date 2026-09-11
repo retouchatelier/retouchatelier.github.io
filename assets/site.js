@@ -358,9 +358,12 @@
     for (var i = 0; i < forms.length; i++) fix(forms[i], i);
   }
 
+  /* Guarded by data-ra-form, so running more than once is free.
+     Worth it: a form low on the page can still be unparsed at
+     DOMContentLoaded, and some pages build theirs after load. */
+  run();
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run);
-  else run();
-  /* Some pages build their form after load. Catch those too. */
+  window.addEventListener("load", run);
   setTimeout(run, 1200);
 })();
 
@@ -452,8 +455,16 @@
   }
 
   function run() { foot(); words(); schema(); }
+
+  /* The footer has two social rows and the second one sits near the very
+     end of the document. Running once at DOMContentLoaded caught only the
+     first — the bottom strip was not parsed yet. Every step below is
+     guarded and idempotent, so running four times costs nothing and the
+     late row is never missed again. */
+  run();
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run);
-  else run();
+  window.addEventListener("load", run);
+  setTimeout(run, 1500);
 })();
 
 
