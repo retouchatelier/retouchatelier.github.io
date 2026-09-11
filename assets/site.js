@@ -66,34 +66,288 @@
     });
   }, true);
 })();
-/* Ask every enquiry where it came from.
-   Partnerships, communities and word of mouth leave no UTM,
-   so this one field is the only honest attribution we have. */
+/* One enquiry form, everywhere.
+   Every form on the site posts to the same place, so it should ask the same
+   questions. This normalises all of them in one file: business inbox on the cc,
+   a required service, a required monthly volume, an optional phone number, and
+   a required "how did you hear about us" as a fixed list rather than free text
+   so the answers can actually be counted. */
 (function () {
-  function addField() {
-    var forms = document.querySelectorAll('form[action*="formsubmit"]');
-    for (var i = 0; i < forms.length; i++) {
-      var f = forms[i];
-      if (f.querySelector('[name="Heard about us"]')) continue;
-      var wrap = document.createElement("div");
-      wrap.className = "fld";
-      var id = "ra-heard-" + i;
-      var lab = document.createElement("label");
-      lab.setAttribute("for", id);
-      lab.textContent = "How did you hear about us?";
-      var inp = document.createElement("input");
-      inp.type = "text"; inp.id = id; inp.name = "Heard about us";
-      inp.autocomplete = "off";
-      inp.placeholder = "Search, LinkedIn, a colleague, somewhere else";
-      wrap.appendChild(lab); wrap.appendChild(inp);
-      var btn = f.querySelector('button[type="submit"], button:not([type]), input[type="submit"]');
-      if (btn && btn.parentNode === f) f.insertBefore(wrap, btn);
-      else f.appendChild(wrap);
-    }
+  var CC = "atelier@retouchatelier.com";
+  var QUOTE = (location.pathname === "/start-a-project/");
+
+  var SERVICES = [
+    ["Apparel & fashion", [
+      "Ghost Mannequin",
+      "Apparel Retouching",
+      "Model Retouching",
+      "Lingerie & Swimwear Retouching",
+      "Kids Fashion Retouching",
+      "Footwear Retouching",
+      "Handbag Retouching",
+      "Eyewear Retouching",
+      "Catalogue & Lookbook Retouching"
+    ]],
+    ["Product & still life", [
+      "Product Photo Editing",
+      "Jewelry Retouching",
+      "Watch Retouching",
+      "Cosmetics Retouching",
+      "Skincare Product Retouching",
+      "Beverage & Bottle Retouching",
+      "Food Photography Retouching",
+      "Furniture Retouching",
+      "Home Decor Retouching",
+      "Electronics Product Retouching",
+      "Automotive Parts Retouching",
+      "Toy Retouching"
+    ]],
+    ["Editing services", [
+      "Clipping Path",
+      "Background Removal",
+      "Image Masking",
+      "Shadow Creation",
+      "Colour Correction",
+      "Photo Culling"
+    ]],
+    ["Marketplace & property", [
+      "Amazon Product Photo Editing",
+      "Shopify Product Image Editing",
+      "Etsy Product Photo Editing",
+      "Real Estate Photo Editing"
+    ]],
+    ["Partnership", [
+      "White-Label Retouching"
+    ]]
+  ];
+
+  /* Which service this page is about. The buyer can still change it. */
+  var PATHS = {
+    "/ghost-mannequin-service/": "Ghost Mannequin",
+    "/ghost-mannequin-production/": "Ghost Mannequin",
+    "/apparel-retouching/": "Apparel Retouching",
+    "/model-retouching/": "Model Retouching",
+    "/lingerie-swimwear-retouching/": "Lingerie & Swimwear Retouching",
+    "/kids-fashion-retouching/": "Kids Fashion Retouching",
+    "/footwear-retouching/": "Footwear Retouching",
+    "/handbag-retouching/": "Handbag Retouching",
+    "/eyewear-retouching/": "Eyewear Retouching",
+    "/catalog-lookbook-retouching/": "Catalogue & Lookbook Retouching",
+    "/product-photo-editing/": "Product Photo Editing",
+    "/jewelry-retouching/": "Jewelry Retouching",
+    "/watch-retouching/": "Watch Retouching",
+    "/cosmetics-retouching/": "Cosmetics Retouching",
+    "/skincare-product-retouching/": "Skincare Product Retouching",
+    "/beverage-bottle-retouching/": "Beverage & Bottle Retouching",
+    "/food-photography-retouching/": "Food Photography Retouching",
+    "/furniture-retouching/": "Furniture Retouching",
+    "/home-decor-retouching/": "Home Decor Retouching",
+    "/electronics-product-retouching/": "Electronics Product Retouching",
+    "/automotive-parts-retouching/": "Automotive Parts Retouching",
+    "/toy-retouching/": "Toy Retouching",
+    "/clipping-path-service/": "Clipping Path",
+    "/background-removal-service/": "Background Removal",
+    "/image-masking-service/": "Image Masking",
+    "/shadow-creation-service/": "Shadow Creation",
+    "/color-correction-service/": "Colour Correction",
+    "/photo-culling-service/": "Photo Culling",
+    "/amazon-product-photo-editing/": "Amazon Product Photo Editing",
+    "/shopify-product-image-editing/": "Shopify Product Image Editing",
+    "/etsy-product-photo-editing/": "Etsy Product Photo Editing",
+    "/real-estate-photo-editing/": "Real Estate Photo Editing",
+    "/white-label-retouching/": "White-Label Retouching",
+    "/white-label-partners/": "White-Label Retouching",
+    "/fashion-studios/": "Apparel Retouching",
+    "/product-studios/": "Product Photo Editing"
+  };
+
+  /* Bands, not a number box. The first one is the published disqualifier:
+     under 500 a month and we are honest that we are the wrong studio. */
+  var VOLUME = [
+    "Fewer than 500 images a month",
+    "500 to 2,000 images a month",
+    "2,000 to 5,000 images a month",
+    "5,000 to 15,000 images a month",
+    "More than 15,000 images a month",
+    "A one-off project, not monthly"
+  ];
+
+  var HEARD = [
+    "Google or another search engine",
+    "ChatGPT or another AI assistant",
+    "LinkedIn",
+    "Instagram or Pinterest",
+    "Behance or Dribbble",
+    "A colleague or a referral",
+    "You emailed me",
+    "A directory or review site",
+    "Somewhere else"
+  ];
+
+  function css() {
+    if (document.getElementById("ra-form-css")) return;
+    var s = document.createElement("style");
+    s.id = "ra-form-css";
+    s.textContent =
+      ".ra-sel{width:100%;padding:13px 14px;border:1px solid var(--line,#e2e8f0);" +
+      "border-radius:8px;background:var(--surface,#fff);color:var(--text,#0f172a);" +
+      "font-size:.95rem;font-family:inherit;line-height:1.3;-webkit-appearance:none;" +
+      "-moz-appearance:none;appearance:none;background-image:url(\"data:image/svg+xml;" +
+      "charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E" +
+      "%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2394a3b8' stroke-width='1.6'/%3E" +
+      "%3C/svg%3E\");background-repeat:no-repeat;background-position:right 14px center;" +
+      "padding-right:38px}" +
+      ".ra-sel:focus{outline:none;border-color:var(--gold,#1d4ed8)}" +
+      ".ra-sel:invalid{color:var(--muted2,#94a3b8)}" +
+      ".ra-hid{display:none}";
+    document.head.appendChild(s);
   }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", addField);
-  else addField();
+
+  function hidden(f, name, value) {
+    var el = f.querySelector('input[name="' + name + '"]');
+    if (el) { if (value !== null) el.value = value; return el; }
+    el = document.createElement("input");
+    el.type = "hidden"; el.name = name; el.value = value || "";
+    f.insertBefore(el, f.firstChild);
+    return el;
+  }
+
+  function field(labelText, node, id) {
+    var w = document.createElement("div");
+    w.className = "fld";
+    var l = document.createElement("label");
+    l.setAttribute("for", id);
+    l.textContent = labelText;
+    w.appendChild(l); w.appendChild(node);
+    return w;
+  }
+
+  function select(id, name, placeholder, groups, chosen) {
+    var s = document.createElement("select");
+    s.id = id; s.name = name; s.required = true; s.className = "ra-sel";
+    var o0 = document.createElement("option");
+    o0.value = ""; o0.textContent = placeholder;
+    o0.disabled = true; o0.selected = true;
+    s.appendChild(o0);
+    for (var g = 0; g < groups.length; g++) {
+      var label = groups[g][0], items = groups[g][1], host = s;
+      if (label) {
+        host = document.createElement("optgroup");
+        host.label = label;
+        s.appendChild(host);
+      }
+      for (var i = 0; i < items.length; i++) {
+        var o = document.createElement("option");
+        o.value = items[i]; o.textContent = items[i];
+        if (chosen && items[i] === chosen) { o.selected = true; o0.selected = false; }
+        host.appendChild(o);
+      }
+    }
+    return s;
+  }
+
+  function anchor(f) {
+    /* Put new fields immediately before the submit button, or before the
+       file uploader if the button sits somewhere else. */
+    var b = f.querySelector('button[type="submit"], button:not([type]), input[type="submit"]');
+    while (b && b.parentNode !== f) b = b.parentNode;
+    return b || null;
+  }
+
+  function put(f, node) {
+    var a = anchor(f);
+    if (a) f.insertBefore(node, a); else f.appendChild(node);
+  }
+
+  function guessService(f) {
+    var h = f.querySelector('input[name="Service"]');
+    if (h && h.value) return h.value;
+    var p = location.pathname;
+    if (PATHS[p]) return PATHS[p];
+    return "";
+  }
+
+  function fix(f, n) {
+    if (f.getAttribute("data-ra-form") === "1") return;
+    f.setAttribute("data-ra-form", "1");
+
+    /* 1. Business inbox. Only three pages carried this before. */
+    hidden(f, "_cc", CC);
+    hidden(f, "Page", location.pathname);
+
+    /* 2 and 3. Service and monthly volume.
+       /start-a-project/ already asks both, visibly, through the quote
+       calculator that writes into its own hidden inputs. Leave that page
+       alone — a second set of controls would fight with it. */
+    if (!QUOTE) {
+      var chosen = guessService(f);
+      var old = f.querySelector('input[name="Service"]');
+      if (old) old.parentNode.removeChild(old);
+      var sid = "ra-svc-" + n;
+      var svc = select(sid, "Service", "Choose the service you need", SERVICES, chosen);
+      put(f, field("Which service do you need?", svc, sid));
+
+      var vid = "ra-vol-" + n;
+      var vol = select(vid, "Image volume", "Choose a monthly volume", [["", VOLUME]], "");
+      put(f, field("How many images a month?", vol, vid));
+    }
+
+    /* 4. Phone. Optional, on purpose — asking for it is how forms die. */
+    if (!f.querySelector('input[name="Phone"]')) {
+      var pid = "ra-tel-" + n;
+      var tel = document.createElement("input");
+      tel.type = "tel"; tel.id = pid; tel.name = "Phone";
+      tel.autocomplete = "tel";
+      tel.placeholder = "With country code";
+      put(f, field("Phone or WhatsApp (optional)", tel, pid));
+    }
+
+    /* 5. Where they came from. A list, so it can be counted.
+       GA4 calls more than half of all sessions "direct", which tells us
+       nothing. This field is the only honest attribution we have. */
+    var oldHeard = f.querySelector('input[name="Heard about us"]');
+    if (oldHeard && oldHeard.parentNode.className === "fld") {
+      oldHeard.parentNode.parentNode.removeChild(oldHeard.parentNode);
+    } else if (oldHeard) {
+      oldHeard.parentNode.removeChild(oldHeard);
+    }
+    var hid = "ra-heard-" + n;
+    var heard = select(hid, "Heard about us", "Choose one", [["", HEARD]], "");
+    put(f, field("How did you hear about us?", heard, hid));
+
+    var oid = "ra-heard-other-" + n;
+    var other = document.createElement("input");
+    other.type = "text"; other.id = oid; other.name = "Heard about us - detail";
+    other.autocomplete = "off";
+    other.placeholder = "Where exactly? It helps us more than you think";
+    other.disabled = true;
+    var otherWrap = field("Tell us where", other, oid);
+    otherWrap.className = "fld ra-hid";
+    put(f, otherWrap);
+
+    heard.addEventListener("change", function () {
+      var show = (heard.value === "Somewhere else" ||
+                  heard.value === "A directory or review site" ||
+                  heard.value === "A colleague or a referral");
+      otherWrap.className = show ? "fld" : "fld ra-hid";
+      other.disabled = !show;
+      if (!show) other.value = "";
+    });
+  }
+
+  function run() {
+    var forms = document.querySelectorAll('form[action*="formsubmit"]');
+    if (!forms.length) return;
+    css();
+    for (var i = 0; i < forms.length; i++) fix(forms[i], i);
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run);
+  else run();
+  /* Some pages build their form after load. Catch those too. */
+  setTimeout(run, 1200);
 })();
+
 
 
 /* Before/after sliders on service pages (markup uses data-ba2). */
