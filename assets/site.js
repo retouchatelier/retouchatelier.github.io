@@ -192,7 +192,7 @@
       ".ra-sel,.ra-tel{width:100%;box-sizing:border-box;padding:12px 14px;" +
       "border:1px solid var(--line,#e2e8f0);border-radius:8px;" +
       "background:var(--surface,#fff);color:var(--text,#0f172a);" +
-      "font-size:.95rem;font-family:inherit;line-height:1.4}" +
+      "font-size:.95rem;font-family:inherit;line-height:1.2}" +
       ".ra-sel{-webkit-appearance:none;-moz-appearance:none;appearance:none;" +
       "background-image:url(\"data:image/svg+xml;charset=utf8,%3Csvg xmlns=" +
       "'http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' " +
@@ -326,8 +326,8 @@
       var tel = document.createElement("input");
       tel.type = "tel"; tel.id = pid; tel.name = "Phone";
       tel.autocomplete = "tel"; tel.className = "ra-tel";
-      tel.placeholder = "With country code";
-      telField = field("Phone or WhatsApp (optional)", tel, pid);
+      tel.placeholder = "WhatsApp, with country code";
+      telField = field("Phone (optional)", tel, pid);
     }
     row(f, field("How did you hear about us?", heard, hid), telField);
 
@@ -371,18 +371,23 @@
 (function () {
   var LI = "https://www.linkedin.com/company/retouch-atelier/";
 
-  /* 1. Footer. First in the row — for this buyer it outranks the rest. */
+  /* 1. Footer. First in the row — for this buyer it outranks the rest.
+        There are two social rows down there, not one: the "Connect"
+        column in the grid, and the strip along the very bottom. Both. */
   function foot() {
-    if (document.querySelector('footer a[href*="linkedin.com"]')) return;
-    var ig = document.querySelector('footer a[href*="instagram.com"]');
-    if (!ig || !ig.parentNode) return;
-    var a = document.createElement("a");
-    a.href = LI;
-    a.textContent = "LinkedIn";
-    a.target = "_blank";
-    a.rel = "noopener";
-    if (ig.className) a.className = ig.className;
-    ig.parentNode.insertBefore(a, ig);
+    var igs = document.querySelectorAll('footer a[href*="instagram.com"]');
+    for (var i = 0; i < igs.length; i++) {
+      var ig = igs[i], p = ig.parentNode;
+      if (!p) continue;
+      if (p.querySelector('a[href*="linkedin.com"]')) continue;
+      var a = document.createElement("a");
+      a.href = LI;
+      a.textContent = "LinkedIn";
+      a.target = "_blank";
+      a.rel = "noopener";
+      if (ig.className) a.className = ig.className;
+      p.insertBefore(a, ig);
+    }
   }
 
   /* 2. "Follow — Instagram · LinkedIn" was words, not links.
