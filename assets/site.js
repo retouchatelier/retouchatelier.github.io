@@ -595,3 +595,134 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener("load", run);
   setTimeout(run, 1500);
 })();
+
+/* The private gallery.
+   Most of the studio's work is under NDA and never reaches the website, so the
+   portfolio shows the small part that can be published. This turns that from a
+   gap into the reason to make contact: one click opens a pre-written email, the
+   buyer presses send, and the studio replies with the full-resolution set.
+
+   The draft carries two optional blank lines. A bare mailto returns an address
+   and nothing else; if the buyer fills them in we learn what they shoot and at
+   what volume, and if they do not, the email still sends. */
+(function () {
+  var TO = "atelier@retouchatelier.com";
+  var SUBJECT = "Private gallery request";
+  var BODY = [
+    "Hello Retouch Atelier,",
+    "",
+    "Please send me the private gallery — the full-resolution before and after",
+    "work you don't publish.",
+    "",
+    "What I shoot:",
+    "Roughly how many images a month:",
+    "",
+    "Thanks,"
+  ].join("\n");
+
+  var HREF = "mailto:" + TO +
+             "?subject=" + encodeURIComponent(SUBJECT) +
+             "&body=" + encodeURIComponent(BODY);
+
+  function css() {
+    if (document.getElementById("ra-gal-css")) return;
+    var s = document.createElement("style");
+    s.id = "ra-gal-css";
+    s.textContent =
+      ".ra-gal{border:1px solid var(--line,#e2e8f0);border-radius:12px;" +
+      "padding:30px 32px;margin:0 auto;max-width:780px;background:var(--surface,#fff)}" +
+      ".ra-gal .ra-gal-e{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;" +
+      "color:var(--gold,#1d4ed8);margin-bottom:12px}" +
+      ".ra-gal h3{font-family:var(--serif,Georgia,serif);font-weight:500;" +
+      "font-size:clamp(1.25rem,2.4vw,1.6rem);margin:0 0 12px;color:var(--text,#0f172a);line-height:1.3}" +
+      ".ra-gal p{color:var(--muted,#475569);font-size:1rem;line-height:1.7;margin:0 0 20px;max-width:62ch}" +
+      ".ra-gal .ra-gal-note{font-size:.84rem;color:var(--muted2,#94a3b8);margin:14px 0 0}" +
+      ".ra-gal .ra-gal-note a{color:var(--muted2,#94a3b8)}" +
+      ".ra-gal-wrap{padding:44px 0}";
+    document.head.appendChild(s);
+  }
+
+  function block(where) {
+    var sec = document.createElement("section");
+    sec.className = "ra-gal-wrap";
+    sec.setAttribute("data-ra-gal", "1");
+    sec.innerHTML =
+      '<div class="wrap"><div class="ra-gal">' +
+      '<div class="ra-gal-e">The work we cannot publish</div>' +
+      '<h3>Most of what we retouch never reaches this website.</h3>' +
+      '<p>Client catalogues sit under NDA, so the pairs shown here are the small ' +
+      'part we are free to publish. The private gallery is the rest of it — ' +
+      'full resolution, before and after, so you can judge the work at the size ' +
+      'you would actually deliver it.</p>' +
+      '<a class="btn btn-gold" href="' + HREF + '" data-ra-gal-link="' + where + '">' +
+      'Ask for the private gallery</a>' +
+      '<p class="ra-gal-note">Opens an email that is already written — press send. ' +
+      'We reply with the link the same working day, Monday to Saturday. ' +
+      'Or write to <a href="mailto:' + TO + '">' + TO + '</a>.</p>' +
+      '</div></div>';
+    return sec;
+  }
+
+  var done = false;
+  function place() {
+    if (done || document.querySelector("[data-ra-gal]")) return;
+
+    var form = document.querySelector('form[action*="formsubmit"]');
+    var formSec = form ? form.closest("section") : null;
+    var cta = document.querySelector("section.cta-band");
+    var anchor = cta || formSec;
+    if (!anchor || !anchor.parentNode) return;
+
+    css();
+    done = true;
+    anchor.parentNode.insertBefore(block("before-form"), anchor);
+
+    /* Where the buyer has just finished looking at real work, put it there too.
+       Only on pages carrying a genuine set of before/after pairs. */
+    var pairs = document.querySelectorAll(".ba");
+    if (pairs.length >= 3) {
+      var proof = pairs[pairs.length - 1].closest("section");
+      /* Skip it if the proof block would land right next to the one above the
+         form. Two identical panels in a row reads as nagging. */
+      var adjacent = proof && (proof.nextElementSibling === anchor ||
+                     (proof.nextElementSibling && proof.nextElementSibling.getAttribute &&
+                      proof.nextElementSibling.getAttribute("data-ra-gal") === "1"));
+      if (proof && proof !== anchor && proof.parentNode && !adjacent) {
+        proof.parentNode.insertBefore(block("after-proof"), proof.nextSibling);
+      }
+    }
+
+    /* The portfolio is the one page a buyer opens specifically to judge the
+       work. They should learn there is more before scrolling fifteen pairs,
+       not after. */
+    if (location.pathname === "/portfolio/") {
+      var secs = document.querySelectorAll("section");
+      for (var i = 0; i < secs.length; i++) {
+        if (secs[i].getAttribute("data-ra-gal") === "1") continue;
+        if (secs[i].querySelector(".ba") || secs[i] === anchor) break;
+        if (secs[i].parentNode) {
+          secs[i].parentNode.insertBefore(block("portfolio-top"), secs[i].nextSibling);
+        }
+        break;
+      }
+    }
+  }
+
+  /* A mailto click is invisible to analytics unless it is reported.
+     Without this we would never know whether any of it works. */
+  document.addEventListener("click", function (e) {
+    var a = e.target && e.target.closest ? e.target.closest("[data-ra-gal-link]") : null;
+    if (!a) return;
+    if (typeof gtag === "function") {
+      gtag("event", "gallery_request", {
+        placement: a.getAttribute("data-ra-gal-link"),
+        page_path: location.pathname
+      });
+    }
+  }, true);
+
+  place();
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", place);
+  window.addEventListener("load", place);
+  setTimeout(place, 1500);
+})();
