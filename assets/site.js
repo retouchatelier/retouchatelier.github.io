@@ -624,10 +624,25 @@ document.addEventListener('DOMContentLoaded', function () {
     "Thanks,"
   ].join("\n");
 
+  var E = encodeURIComponent;
+
+  /* Three routes to the same email, because one is never enough.
+     mailto covers Outlook and Apple Mail, which is most business desktops and
+     every phone. It does nothing at all on a machine with no mail handler set,
+     which is common for people who live in webmail — so those two get a direct
+     compose link instead. */
   var HREF = "mailto:" + TO +
-             "?cc=" + encodeURIComponent(CC) +
-             "&subject=" + encodeURIComponent(SUBJECT) +
-             "&body=" + encodeURIComponent(BODY);
+             "?cc=" + E(CC) +
+             "&subject=" + E(SUBJECT) +
+             "&body=" + E(BODY);
+
+  var GMAIL = "https://mail.google.com/mail/?view=cm&fs=1" +
+              "&to=" + E(TO) + "&cc=" + E(CC) +
+              "&su=" + E(SUBJECT) + "&body=" + E(BODY);
+
+  var OUTLOOK = "https://outlook.office.com/mail/deeplink/compose" +
+                "?to=" + E(TO) + "&cc=" + E(CC) +
+                "&subject=" + E(SUBJECT) + "&body=" + E(BODY);
 
   function css() {
     if (document.getElementById("ra-gal-css")) return;
@@ -641,7 +656,9 @@ document.addEventListener('DOMContentLoaded', function () {
       ".ra-gal h3{font-family:var(--serif,Georgia,serif);font-weight:500;" +
       "font-size:clamp(1.25rem,2.4vw,1.6rem);margin:0 0 12px;color:var(--text,#0f172a);line-height:1.3}" +
       ".ra-gal p{color:var(--muted,#475569);font-size:1rem;line-height:1.7;margin:0 0 20px;max-width:62ch}" +
-      ".ra-gal .ra-gal-note{font-size:.84rem;color:var(--muted2,#94a3b8);margin:14px 0 0}" +
+      ".ra-gal .ra-gal-alt{font-size:.85rem;color:var(--muted2,#94a3b8);margin:14px 0 0}" +
+      ".ra-gal .ra-gal-alt a{color:var(--gold,#1d4ed8);text-decoration:none;border-bottom:1px solid var(--line,#e2e8f0)}" +
+      ".ra-gal .ra-gal-note{font-size:.84rem;color:var(--muted2,#94a3b8);margin:10px 0 0}" +
       ".ra-gal .ra-gal-note a{color:var(--muted2,#94a3b8)}" +
       ".ra-gal-wrap{padding:44px 0}";
     document.head.appendChild(s);
@@ -661,6 +678,11 @@ document.addEventListener('DOMContentLoaded', function () {
       'you would actually deliver it.</p>' +
       '<a class="btn btn-gold" href="' + HREF + '" data-ra-gal-link="' + where + '">' +
       'Ask for the private gallery</a>' +
+      '<div class="ra-gal-alt">or open it in ' +
+      '<a href="' + GMAIL + '" target="_blank" rel="noopener" ' +
+      'data-ra-gal-link="' + where + '-gmail">Gmail</a> &middot; ' +
+      '<a href="' + OUTLOOK + '" target="_blank" rel="noopener" ' +
+      'data-ra-gal-link="' + where + '-outlook">Outlook</a></div>' +
       '<p class="ra-gal-note">Opens an email that is already written — press send. ' +
       'We reply with the link the same working day, Monday to Saturday. ' +
       'Or write to <a href="mailto:' + TO + '">' + TO + '</a>.</p>' +
