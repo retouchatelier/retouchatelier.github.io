@@ -86,9 +86,11 @@
       "Footwear Retouching",
       "Handbag Retouching",
       "Eyewear Retouching",
-      "Catalogue & Lookbook Retouching"
+      "Catalogue & Lookbook Retouching",
+      "Accessories Retouching"
     ]],
     ["Product & still life", [
+      "Packshot Retouching",
       "Product Photo Editing",
       "Jewelry Retouching",
       "Watch Retouching",
@@ -133,6 +135,8 @@
     "/handbag-retouching/": "Handbag Retouching",
     "/eyewear-retouching/": "Eyewear Retouching",
     "/catalog-lookbook-retouching/": "Catalogue & Lookbook Retouching",
+    "/packshot-retouching/": "Packshot Retouching",
+    "/accessories-retouching/": "Accessories Retouching",
     "/product-photo-editing/": "Product Photo Editing",
     "/jewelry-retouching/": "Jewelry Retouching",
     "/watch-retouching/": "Watch Retouching",
@@ -537,3 +541,57 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /* Studio clock loader. */
 (function(){var s=document.createElement('script');s.src='/assets/clock.js';s.defer=true;document.head.appendChild(s);})();
+
+/* The footer Services column is the most-repeated internal navigation on the
+   site, so its order is what tells Google and an assistant what this studio
+   actually is. Target work first; jewellery and watches keep their links but
+   move to the end. Nothing is removed — removing links would cost those pages
+   their crawl priority, and they still earn impressions. */
+(function () {
+  var LEAD = [["/ghost-mannequin-service/", "Ghost Mannequin"],
+              ["/apparel-retouching/", "Apparel Retouching"],
+              ["/packshot-retouching/", "Packshot Retouching"],
+              ["/accessories-retouching/", "Accessories Retouching"],
+              ["/catalog-lookbook-retouching/", "Catalogue Retouching"],
+              ["/white-label-retouching/", "White-Label"]];
+  var TAIL = ["/jewelry-retouching/", "/watch-retouching/"];
+
+  function col() {
+    var cols = document.querySelectorAll("footer .foot-col");
+    for (var i = 0; i < cols.length; i++) {
+      var h = cols[i].querySelector("h4");
+      if (h && (h.textContent || "").trim() === "Services") return cols[i];
+    }
+    return null;
+  }
+
+  function run() {
+    var c = col();
+    if (!c || c.getAttribute("data-ra-svc") === "1") return;
+    c.setAttribute("data-ra-svc", "1");
+
+    for (var i = 0; i < LEAD.length; i++) {
+      if (c.querySelector('a[href="' + LEAD[i][0] + '"]')) continue;
+      var a = document.createElement("a");
+      a.href = LEAD[i][0];
+      a.textContent = LEAD[i][1];
+      c.appendChild(a);
+    }
+    /* Push jewellery and watches to the bottom of the column. */
+    for (var j = 0; j < TAIL.length; j++) {
+      var t = c.querySelector('a[href="' + TAIL[j] + '"]');
+      if (t) c.appendChild(t);
+    }
+    /* Re-order the lead links above them, in the order declared. */
+    for (var k = LEAD.length - 1; k >= 0; k--) {
+      var el = c.querySelector('a[href="' + LEAD[k][0] + '"]');
+      var first = c.querySelector("h4");
+      if (el && first && first.nextSibling) c.insertBefore(el, first.nextSibling);
+    }
+  }
+
+  run();
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run);
+  window.addEventListener("load", run);
+  setTimeout(run, 1500);
+})();
