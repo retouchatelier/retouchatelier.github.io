@@ -607,6 +607,10 @@ document.addEventListener('DOMContentLoaded', function () {
    what volume, and if they do not, the email still sends. */
 (function () {
   var TO = "atelier@retouchatelier.com";
+  /* The studio inbox is copied in so the request is visible in Gmail the moment
+     it is sent, without waiting on forwarding. The buyer writes to atelier@,
+     which is the address on every page. */
+  var CC = "retouchatelier.studio@gmail.com";
   var SUBJECT = "Private gallery request";
   var BODY = [
     "Hello Retouch Atelier,",
@@ -621,7 +625,8 @@ document.addEventListener('DOMContentLoaded', function () {
   ].join("\n");
 
   var HREF = "mailto:" + TO +
-             "?subject=" + encodeURIComponent(SUBJECT) +
+             "?cc=" + encodeURIComponent(CC) +
+             "&subject=" + encodeURIComponent(SUBJECT) +
              "&body=" + encodeURIComponent(BODY);
 
   function css() {
