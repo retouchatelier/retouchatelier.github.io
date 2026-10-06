@@ -105,6 +105,7 @@
       "Toy Retouching"
     ]],
     ["Editing services", [
+      "AI Image Correction",
       "Clipping Path",
       "Background Removal",
       "Image Masking",
@@ -127,6 +128,7 @@
   var PATHS = {
     "/ghost-mannequin-service/": "Ghost Mannequin",
     "/ghost-mannequin-production/": "Ghost Mannequin",
+    "/ai-image-correction/": "AI Image Correction",
     "/apparel-retouching/": "Apparel Retouching",
     "/model-retouching/": "Model Retouching",
     "/lingerie-swimwear-retouching/": "Lingerie & Swimwear Retouching",
