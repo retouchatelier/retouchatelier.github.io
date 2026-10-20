@@ -301,8 +301,19 @@
        alone — a second set of controls would fight with it. */
     if (!QUOTE) {
       var chosen = guessService(f);
-      var old = f.querySelector('input[name="Service"]');
-      if (old) old.parentNode.removeChild(old);
+      /* Any Service control the page already carries goes, whatever the case
+         of its name attribute, and its label with it. The homepage shipped a
+         <select name="service"> of its own; leaving it in place showed the
+         buyer two "which service" questions and sent FormSubmit both. */
+      var existing = f.querySelectorAll("input, select");
+      for (var q = existing.length - 1; q >= 0; q--) {
+        var ex = existing[q];
+        if (!ex.name || ex.name.toLowerCase() !== "service") continue;
+        if (!chosen && ex.value) chosen = ex.value;
+        var holder = (ex.parentNode && ex.parentNode.className === "fld")
+                   ? ex.parentNode : ex;
+        if (holder.parentNode) holder.parentNode.removeChild(holder);
+      }
       var sid = "ra-svc-" + n;
       var svc = select(sid, "Service", "Choose the service you need", SERVICES, chosen);
       var vid = "ra-vol-" + n;
@@ -323,6 +334,10 @@
     }
     var hid = "ra-heard-" + n;
     var heard = select(hid, "Heard about us", "Choose one", [["", HEARD]], "");
+    /* Optional. It is the only honest attribution we have, so it stays on the
+       form — but a required field a buyer cannot answer is a lost enquiry, and
+       at this traffic every abandoned form costs more than the data is worth. */
+    heard.required = false;
 
     /* 4. Phone. Optional, on purpose — demanding it is how forms die.
        Sits beside the source question so the row stays two-up. */
@@ -335,7 +350,7 @@
       tel.placeholder = "WhatsApp, with country code";
       telField = field("Phone (optional)", tel, pid);
     }
-    row(f, field("How did you hear about us?", heard, hid), telField);
+    row(f, field("How did you hear about us? (optional)", heard, hid), telField);
 
     var oid = "ra-heard-other-" + n;
     var other = document.createElement("input");
