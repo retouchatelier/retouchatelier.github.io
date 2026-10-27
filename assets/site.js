@@ -74,7 +74,8 @@
    so the answers can actually be counted. */
 (function () {
   var CC = "atelier@retouchatelier.com";
-  var QUOTE = (location.pathname === "/start-a-project/");
+  var QUOTE = (location.pathname === "/start-a-project/" ||
+             location.pathname === "/production-fit-test/");
 
   var SERVICES = [
     ["Apparel & fashion", [
@@ -769,4 +770,77 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", place);
   window.addEventListener("load", place);
   setTimeout(place, 1500);
+})();
+
+
+/* The volume door, on every page.
+   A buyer shooting 500 a day and a buyer with twenty images both land on the
+   same homepage, and the free test edit speaks to the second one. This is the
+   first buyer's door: a slim bar above the header, in the site's own colours,
+   dismissible once and remembered. No modal — the people this is aimed at run
+   studios and close popups without reading them. */
+(function () {
+  var KEY = "ra_pft_dismissed";
+  var PATH = "/production-fit-test/";
+  if (location.pathname === PATH) return;
+  try { if (localStorage.getItem(KEY) === "1") return; } catch (e) {}
+
+  function build() {
+    if (document.getElementById("ra-pft-bar")) return;
+    if (!document.body) return;
+
+    var css = document.createElement("style");
+    css.textContent =
+      "#ra-pft-bar{position:fixed;top:0;left:0;right:0;z-index:300;background:var(--navy,#0f2a4a);" +
+      "color:#fff;font-family:var(--sans,Inter,sans-serif);font-size:.84rem;line-height:1.4;" +
+      "border-bottom:1px solid rgba(255,255,255,.12)}" +
+      "#ra-pft-bar .ra-pft-in{max-width:var(--maxw,1400px);margin:0 auto;padding:9px 26px;" +
+      "display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;position:relative}" +
+      "#ra-pft-bar b{font-weight:600}" +
+      "#ra-pft-bar a.ra-pft-cta{background:var(--gold,#1d4ed8);color:#fff;padding:6px 15px;border-radius:7px;" +
+      "font-weight:500;white-space:nowrap;transition:background .2s ease}" +
+      "#ra-pft-bar a.ra-pft-cta:hover{background:var(--gold-soft,#1e40af)}" +
+      "#ra-pft-bar .ra-pft-x{position:absolute;right:16px;top:50%;transform:translateY(-50%);" +
+      "background:none;border:0;color:rgba(255,255,255,.55);font-size:1.1rem;line-height:1;cursor:pointer;padding:4px 6px}" +
+      "#ra-pft-bar .ra-pft-x:hover{color:#fff}" +
+      "body.ra-pft-on header{top:var(--ra-pft-h,40px)}" +
+      "@media(max-width:700px){#ra-pft-bar .ra-pft-in{padding:8px 44px 8px 18px;font-size:.78rem;gap:10px}}";
+    document.head.appendChild(css);
+
+    var bar = document.createElement("div");
+    bar.id = "ra-pft-bar";
+    bar.innerHTML =
+      '<div class="ra-pft-in">' +
+      '<span><b>Shooting 500 or more images a day?</b> Run a paid pilot on your own live batch first.</span>' +
+      '<a class="ra-pft-cta" href="' + PATH + '">Production fit test</a>' +
+      '<button class="ra-pft-x" type="button" aria-label="Dismiss">&times;</button>' +
+      '</div>';
+    document.body.insertBefore(bar, document.body.firstChild);
+    document.body.classList.add("ra-pft-on");
+
+    function size() {
+      var h = bar.offsetHeight || 40;
+      document.documentElement.style.setProperty("--ra-pft-h", h + "px");
+      document.body.style.paddingTop = h + "px";
+    }
+    size();
+    window.addEventListener("resize", size);
+
+    bar.querySelector(".ra-pft-x").addEventListener("click", function () {
+      try { localStorage.setItem(KEY, "1"); } catch (e) {}
+      bar.remove();
+      document.body.classList.remove("ra-pft-on");
+      document.body.style.paddingTop = "";
+      document.documentElement.style.removeProperty("--ra-pft-h");
+    });
+
+    bar.querySelector(".ra-pft-cta").addEventListener("click", function () {
+      if (typeof gtag === "function") {
+        gtag("event", "pft_bar_click", { page_path: location.pathname });
+      }
+    });
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", build);
+  else build();
 })();
