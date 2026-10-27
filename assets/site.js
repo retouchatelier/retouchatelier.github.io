@@ -804,14 +804,15 @@ document.addEventListener('DOMContentLoaded', function () {
       "background:none;border:0;color:rgba(255,255,255,.55);font-size:1.1rem;line-height:1;cursor:pointer;padding:4px 6px}" +
       "#ra-pft-bar .ra-pft-x:hover{color:#fff}" +
       "body.ra-pft-on header{top:var(--ra-pft-h,40px)}" +
-      "@media(max-width:700px){#ra-pft-bar .ra-pft-in{padding:8px 44px 8px 18px;font-size:.78rem;gap:10px}}";
+      "@media(max-width:700px){#ra-pft-bar .ra-pft-in{padding:8px 44px 8px 18px;font-size:.78rem;gap:10px}" +
+      "#ra-pft-bar .ra-pft-long{display:none}}";
     document.head.appendChild(css);
 
     var bar = document.createElement("div");
     bar.id = "ra-pft-bar";
     bar.innerHTML =
       '<div class="ra-pft-in">' +
-      '<span><b>Shooting 500 or more images a day?</b> Run a paid pilot on your own live batch first.</span>' +
+      '<span><b>Shooting 500 or more images a day?</b><span class="ra-pft-long"> Run a paid pilot on your own live batch first.</span></span>' +
       '<a class="ra-pft-cta" href="' + PATH + '">Production fit test</a>' +
       '<button class="ra-pft-x" type="button" aria-label="Dismiss">&times;</button>' +
       '</div>';
@@ -819,7 +820,11 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.classList.add("ra-pft-on");
 
     function size() {
+      /* A zero-width or very narrow viewport can wrap this into a tall block.
+         The bar is one line of text; anything past three lines is a layout bug,
+         not a design, so cap what we push the page down by. */
       var h = bar.offsetHeight || 40;
+      if (!(h > 0) || h > 96) h = 40;
       document.documentElement.style.setProperty("--ra-pft-h", h + "px");
       document.body.style.paddingTop = h + "px";
     }
