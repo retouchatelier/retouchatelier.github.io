@@ -66,6 +66,63 @@
     });
   }, true);
 })();
+
+/* Click IDs, so an enquiry can be traced back to the ad that paid for it.
+   Deliberately its own block, outside the analytics guard above: these values
+   go into the enquiry email, not into Analytics, so they are still wanted on a
+   device where we have turned tracking off.
+
+   Google drops gclid, and gbraid/wbraid on iOS where gclid is withheld.
+   LinkedIn drops li_fat_id. We keep the FIRST one seen for 90 days, because a
+   buyer who clicks an ad in week one and enquires in week three was still
+   bought by that ad — last-touch would credit the direct visit and we would
+   conclude the ads did nothing. */
+(function () {
+  var KEYS = ["gclid", "gbraid", "wbraid", "li_fat_id", "fbclid",
+              "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
+  var STORE = "ra_click";
+  var TTL = 90 * 24 * 60 * 60 * 1000;
+
+  function read() {
+    try {
+      var raw = localStorage.getItem(STORE);
+      if (!raw) return null;
+      var o = JSON.parse(raw);
+      if (!o || !o.t || (Date.now() - o.t) > TTL) { localStorage.removeItem(STORE); return null; }
+      return o;
+    } catch (e) { return null; }
+  }
+
+  var q;
+  try { q = new URLSearchParams(location.search); } catch (e) { q = null; }
+
+  if (q) {
+    var fresh = null;
+    for (var i = 0; i < KEYS.length; i++) {
+      var v = q.get(KEYS[i]);
+      if (v) { fresh = fresh || {}; fresh[KEYS[i]] = v; }
+    }
+    /* First touch wins. Only write if nothing is stored, or what is stored
+       has aged out. */
+    if (fresh && !read()) {
+      fresh.t = Date.now();
+      fresh.landing = location.pathname;
+      fresh.referrer = document.referrer || "direct";
+      try { localStorage.setItem(STORE, JSON.stringify(fresh)); } catch (e) {}
+    }
+  }
+
+  /* Exposed for the form block below, which runs in its own closure. */
+  window.raClickIds = function () {
+    var o = read();
+    if (!o) return null;
+    var out = {};
+    for (var k in o) if (o.hasOwnProperty(k) && k !== "t") out[k] = o[k];
+    out.first_seen = new Date(o.t).toISOString().slice(0, 10);
+    return out;
+  };
+})();
+
 /* One enquiry form, everywhere.
    Every form on the site posts to the same place, so it should ask the same
    questions. This normalises all of them in one file: business inbox on the cc,
@@ -295,6 +352,16 @@
     /* 1. Business inbox. Only three pages carried this before. */
     hidden(f, "_cc", CC);
     hidden(f, "Page", location.pathname);
+
+    /* 1b. Whatever click brought them here, carried into the enquiry email.
+       Without this an ad-driven enquiry is indistinguishable from a direct one
+       in the inbox, and the inbox is the only revenue-linked record we have.
+       Nothing is added when there is nothing to add, so an organic enquiry
+       stays clean. */
+    try {
+      var ids = window.raClickIds && window.raClickIds();
+      if (ids) for (var k in ids) if (ids.hasOwnProperty(k)) hidden(f, k, ids[k]);
+    } catch (e) {}
 
     /* 2 and 3. Service and monthly volume.
        /start-a-project/ already asks both, visibly, through the quote
@@ -848,4 +915,35 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", build);
   else build();
+})();
+
+/* LinkedIn Insight Tag.
+   Why it is here at all: LinkedIn will not serve a retargeting audience under
+   300 members, and the audience only starts filling once this tag is live. It
+   therefore has to go up roughly four weeks BEFORE any LinkedIn spend, or the
+   channel cannot run at all. That dependency is the one most easily forgotten.
+
+   It is inert until the partner ID is filled in below. Find it in LinkedIn
+   Campaign Manager -> Account Assets -> Insight Tag; it is a 6-7 digit number.
+   Put it in PARTNER_ID and the tag starts working on the next deploy. Shipping
+   it empty is deliberate and safe — nothing loads, no request is made.
+
+   Respects the same notrack switch as Analytics, so our own devices stay out
+   of the audience. An audience padded with the studio's own team is worse than
+   a small one: it spends the budget showing ads to ourselves. */
+(function () {
+  var PARTNER_ID = "";            /* <-- paste the Insight Tag partner ID here */
+
+  if (!PARTNER_ID) return;
+  try { if (localStorage.getItem("ra_notrack") === "1") return; } catch (e) {}
+
+  window._linkedin_partner_id = PARTNER_ID;
+  window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+  window._linkedin_data_partner_ids.push(PARTNER_ID);
+
+  var s = document.createElement("script");
+  s.type = "text/javascript";
+  s.async = true;
+  s.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+  document.head.appendChild(s);
 })();
