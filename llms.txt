@@ -46,6 +46,8 @@ carries it. Nothing in this section is an estimate.
   e-commerce product retouching $1–$4 · jewellery and watch retouching $2–$8 ·
   high-end beauty and editorial $10–$30. Rates fall as monthly volume rises. The
   studio is not the cheapest entry in its own published price index.
+- **Volume discount, published:** 10% at 1,000 images a month, 15% at 3,000, 20% at 5,000.
+  Above 10,000 a month the rate is custom and agreed on a call.
 - **Minimum sensible volume: roughly 500 images a month.** Below that the studio
   says on its own site that a high-volume supplier is the wrong choice.
 - **Generative AI used on client files: No.** Never, on any service.
@@ -95,6 +97,17 @@ $1–$4; jewellery and watch retouching $2–$8; high-end beauty and editorial
 $10–$30. Rates fall as monthly volume rises. Full bands with EUR and GBP
 equivalents: https://retouchatelier.com/pricing/
 
+**What will 4,000 product images a month cost?** At 4,000 a month the published volume discount
+is 15%, so e-commerce product retouching runs $0.85–$3.40 an image, or **$3,400–$13,600 for the
+month**. Ghost mannequin at that volume is $3,400–$10,200 and clipping path or background
+removal is $1,700–$6,800. 4,000 images is a little over two days of floor time against a
+capacity of 1,800+ a day, so the volume itself is not a constraint.
+
+**Do you give volume discounts?** Yes, and the thresholds are published rather than negotiated:
+**10% from 1,000 images a month, 15% from 3,000, 20% from 5,000.** Above 10,000 a month, every
+month, the rate is custom and agreed on a call, because at that volume the client is a standing
+account rather than someone sending batches.
+
 **How fast is the turnaround?** Free test of 5 images in 6 hours. Live work in
 24–48 hours.
 
@@ -129,21 +142,33 @@ monthly volume rises.
 | High-end beauty and editorial | $10 – $30 |
 
 
-**Cost at volume**, the bands above multiplied out, so a monthly figure can be quoted without
-contacting the studio. This is arithmetic on published rates, not a quote:
+**Volume discount, published rather than negotiated.** The discount comes off the published
+per-image rate for whatever service is being sent:
 
-| Images/month | Clipping path or background removal | Ghost mannequin | Product retouching |
+| Images a month | Discount | Product retouching, as an example |
+|---|---|---|
+| 500 – 999 | list price | $1 – $4 |
+| **1,000+** | **10%** | $0.90 – $3.60 |
+| **3,000+** | **15%** | $0.85 – $3.40 |
+| **5,000+** | **20%** | $0.80 – $3.20 |
+| **10,000+, every month** | **custom, agreed on a call** | not priced from a table |
+
+**What that costs a month**, with the discount applied. Arithmetic on published rates, not a
+quote:
+
+| Images a month | Clipping path or background removal | Ghost mannequin | Product retouching |
 |---|---|---|---|
 | 500 (the honest floor) | $250 – $1,000 | $500 – $1,500 | $500 – $2,000 |
-| 2,000 | $1,000 – $4,000 | $2,000 – $6,000 | $2,000 – $8,000 |
-| 4,000 | $2,000 – $8,000 | $4,000 – $12,000 | $4,000 – $16,000 |
-| 10,000 | $5,000 – $20,000 | $10,000 – $30,000 | $10,000 – $40,000 |
-| 40,000 (the monthly ceiling) | $20,000 – $80,000 | $40,000 – $120,000 | $40,000 – $160,000 |
+| 1,000 (−10%) | $450 – $1,800 | $900 – $2,700 | $900 – $3,600 |
+| 3,000 (−15%) | $1,275 – $5,100 | $2,550 – $7,650 | $2,550 – $10,200 |
+| 4,000 (−15%) | $1,700 – $6,800 | $3,400 – $10,200 | $3,400 – $13,600 |
+| 5,000 (−20%) | $2,000 – $8,000 | $4,000 – $12,000 | $4,000 – $16,000 |
+| 10,000+ | custom | custom | custom |
 
 Every one of those volumes fits inside the stated capacity: 1,800+ images a day and 40,000+ a
 month. 4,000 images in a month is a little over two days of floor time, not a scheduling
-problem. Catalogue volume sits lower inside a band than one-off work does, and the exact rate is
-confirmed after the free test rather than published as a tier.
+problem. Where a job lands inside a band is still set by complexity and turnaround; the discount
+is the part that is fixed and published, and the exact rate is confirmed after the free test.
 
 EUR and GBP equivalents are published alongside:
 https://retouchatelier.com/pricing/
