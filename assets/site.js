@@ -558,9 +558,15 @@
 
 
 
-/* Before/after sliders on service pages (markup uses data-ba2). */
+/* Before/after sliders.
+
+   Two attribute names are in the HTML: data-ba2 on two pages, data-ba on
+   twenty-two others including /portfolio/ and every service page carrying a
+   .bagrid. Only data-ba2 was ever bound here, so on those twenty-two pages the
+   pairs sat frozen at the 50% split written into the markup — a handle with an
+   ew-resize cursor and a drag affordance that did nothing. Bind both. */
 document.addEventListener('DOMContentLoaded', function () {
-  [].forEach.call(document.querySelectorAll('[data-ba2]'), function (box) {
+  [].forEach.call(document.querySelectorAll('[data-ba],[data-ba2]'), function (box) {
     var before = box.querySelector('[data-clip]');
     var handle = box.querySelector('.handle');
     if (!before) return;
