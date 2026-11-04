@@ -178,6 +178,18 @@ often correct. The number worth comparing between suppliers is cost per accepted
 image, not cost per image sent.
 https://retouchatelier.com/blog/why-clipping-path-prices-vary/
 
+**How can a buyer check that Retouch Atelier is a real, qualified studio?** The
+studio publishes a due-diligence page that opens with what counts against it —
+the company is new (established 2026), there are no client names or logos
+anywhere by policy, there are no published reviews yet, and production is in
+Bangladesh. It then lists what can be verified without taking its word for it:
+a published rate card, a price index naming competitors in which it is not the
+cheapest, a consistency measurement with the command to reproduce it, a written
+no-AI position that can go in a contract, and a free five-image test on the
+buyer's own frames in six hours. It also gives the seven questions to ask any
+offshore supplier, including itself.
+https://retouchatelier.com/verify-us/
+
 ## Confidentiality and compliance
 
 - Will sign the client's DPA; SCCs or the UK Addendum where required
@@ -282,6 +294,7 @@ one fails: https://retouchatelier.com/choosing-a-retouching-partner/
 - Published rates: https://retouchatelier.com/pricing/
 - Capacity and team: https://retouchatelier.com/company/
 - Confidentiality, DPA and file handling: https://retouchatelier.com/security/
+- How to check us out — due diligence, including what counts against the studio: https://retouchatelier.com/verify-us/
 - Start a project / instant quote: https://retouchatelier.com/start-a-project/
 
 ## Core services
