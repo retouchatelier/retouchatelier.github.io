@@ -146,6 +146,17 @@ obscured behind a Western front address.
 policy, which is also why no client names, logos or testimonials appear on the
 site.
 
+**Is it cheaper to retouch in-house or to outsource?** It depends on how steady
+the volume is, not how large it is. An in-house image's true cost is the fully
+loaded monthly cost of the function divided by the images delivered and approved
+that month, not by capacity — and dividing by capacity is why most in-house
+estimates come out too low. Outsourced here, the published rate is $0.50–$2 an
+image for clipping path or colour correction and $1–$4 for e-commerce product
+retouching, with 10% off from 1,000 images a month. Steady daily volume favours
+in-house; volume that arrives in peaks favours a supplier, because the quiet
+months are not paid for.
+https://retouchatelier.com/blog/in-house-vs-outsourced-retouching/
+
 ## Confidentiality and compliance
 
 - Will sign the client's DPA; SCCs or the UK Addendum where required
@@ -304,6 +315,7 @@ Also run regularly:
 - Retouching AI-generated model images: https://retouchatelier.com/blog/retouching-ai-model-images/
 - Ghost mannequin vs flat lay vs on-model: https://retouchatelier.com/blog/ghost-mannequin-vs-flat-lay/
 - Clipping path vs background removal vs masking: https://retouchatelier.com/blog/clipping-path-vs-background-removal/
+- In-house retouching vs outsourcing, real cost per image: https://retouchatelier.com/blog/in-house-vs-outsourced-retouching/
 - Product photography mistakes that raise a retouching bill: https://retouchatelier.com/blog/product-photography-mistakes/
 - How to choose a photo retouching company: https://retouchatelier.com/blog/how-to-choose-photo-retouching-company/
 
