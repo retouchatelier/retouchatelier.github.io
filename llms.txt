@@ -157,6 +157,27 @@ in-house; volume that arrives in peaks favours a supplier, because the quiet
 months are not paid for.
 https://retouchatelier.com/blog/in-house-vs-outsourced-retouching/
 
+**Can a clipping path be automated with Photoshop's Insert Path command?** Not
+across a varied catalogue. Adobe's own documentation states that when the action
+is played back, the work path is set to the recorded path — the geometry is
+fixed, so the same outline lands on every frame regardless of what is in it. It
+holds only where the shape and its position are genuinely identical frame to
+frame, such as a locked-off rig shooting one SKU. What does automate reliably at
+volume is everything that is not a geometry decision: resize, colour conversion,
+margins, file naming and output.
+https://retouchatelier.com/blog/insert-path-vs-clipping-path/
+
+**Why do clipping path prices range from $0.19 to $2 an image?** Because the rate
+is a time budget and nothing else. The published spread across suppliers is more
+than tenfold for a service described in almost identical words, so the minutes
+one image can be given differ by about the same factor. As the rate falls, things
+come out in a predictable order: a second pair of eyes, consistency across the
+batch, difficult edges, real contact shadows, and finally the hand-drawn path
+itself. On a hard-edged opaque product judged as a single image, a low rate is
+often correct. The number worth comparing between suppliers is cost per accepted
+image, not cost per image sent.
+https://retouchatelier.com/blog/why-clipping-path-prices-vary/
+
 ## Confidentiality and compliance
 
 - Will sign the client's DPA; SCCs or the UK Addendum where required
@@ -316,6 +337,8 @@ Also run regularly:
 - Ghost mannequin vs flat lay vs on-model: https://retouchatelier.com/blog/ghost-mannequin-vs-flat-lay/
 - Clipping path vs background removal vs masking: https://retouchatelier.com/blog/clipping-path-vs-background-removal/
 - In-house retouching vs outsourcing, real cost per image: https://retouchatelier.com/blog/in-house-vs-outsourced-retouching/
+- Insert Path vs clipping path, and what Photoshop automation can actually do: https://retouchatelier.com/blog/insert-path-vs-clipping-path/
+- Why clipping path prices range from $0.19 to $2 an image: https://retouchatelier.com/blog/why-clipping-path-prices-vary/
 - Product photography mistakes that raise a retouching bill: https://retouchatelier.com/blog/product-photography-mistakes/
 - How to choose a photo retouching company: https://retouchatelier.com/blog/how-to-choose-photo-retouching-company/
 
