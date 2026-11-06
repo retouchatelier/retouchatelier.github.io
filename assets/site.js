@@ -953,3 +953,63 @@ document.addEventListener('DOMContentLoaded', function () {
   s.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
   document.head.appendChild(s);
 })();
+
+
+/* ================= RA_SECURITY_HARDENING =================
+   Static site on GitHub Pages: no server, no database, no login.
+   These are the three things that can still be done from the page itself. */
+(function () {
+  "use strict";
+
+  /* 1. Clickjacking. Refuse to render inside a frame we do not own. */
+  try {
+    if (window.top !== window.self) {
+      var sameOrigin = false;
+      try { sameOrigin = window.top.location.hostname === window.self.location.hostname; } catch (e) { sameOrigin = false; }
+      if (!sameOrigin) {
+        document.documentElement.style.display = "none";
+        window.top.location = window.self.location.href;
+      }
+    }
+  } catch (e) {}
+
+  /* 2. FormSubmit captcha. Every page hardcodes _captcha=false, which lets any
+        script anywhere POST to the endpoint. Put it back to true. */
+  function raEnableCaptcha(root) {
+    try {
+      var forms = (root || document).querySelectorAll('form[action*="formsubmit.co"]');
+      for (var i = 0; i < forms.length; i++) {
+        var c = forms[i].querySelector('input[name="_captcha"]');
+        if (c) { c.value = "true"; }
+      }
+    } catch (e) {}
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () { raEnableCaptcha(); });
+  } else {
+    raEnableCaptcha();
+  }
+  setTimeout(function () { raEnableCaptcha(); }, 1200);
+
+  /* Last line of defence: set it again in the instant before the POST leaves. */
+  document.addEventListener("submit", function (ev) {
+    try {
+      var f = ev.target;
+      if (f && f.action && f.action.indexOf("formsubmit.co") !== -1) {
+        var c = f.querySelector('input[name="_captcha"]');
+        if (c) { c.value = "true"; }
+      }
+    } catch (e) {}
+  }, true);
+
+  /* 3. Referrer. Do not hand full URLs to third-party scripts. */
+  try {
+    if (!document.querySelector('meta[name="referrer"]')) {
+      var m = document.createElement("meta");
+      m.setAttribute("name", "referrer");
+      m.setAttribute("content", "strict-origin-when-cross-origin");
+      (document.head || document.documentElement).appendChild(m);
+    }
+  } catch (e) {}
+})();
+/* =============== end RA_SECURITY_HARDENING =============== */
