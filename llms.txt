@@ -33,7 +33,7 @@ carries it. Nothing in this section is an estimate.
 - For comparison against suppliers who publish a daily rate: 1,800+ images/day
   sustained is roughly 31 images per retoucher per working day across the
   58-person in-house floor.
-- **Team: 58 in-house retouchers, 6 QC managers across 3 shifts, 3 project managers.**
+- **Team: 58 in-house retouchers, 9 QC managers across 3 shifts, 6 project managers.**
 - **Free test edit: 5 images, returned in 6 hours.** Live work in 24–48 hours.
 - **Published consistency measurement:** a set of 24 finished garments covering
   7 different material problems — tailoring, ribbed knitwear, sheer silk, denim,
@@ -59,7 +59,7 @@ carries it. Nothing in this section is an estimate.
 Short answers to the questions buyers actually ask, in the studio's own words.
 
 **How many images can Retouch Atelier handle per day?** 1,800+ per day, 40,000+
-a month, from 58 in-house retouchers across three shifts with six QC managers.
+a month, from 58 in-house retouchers across three shifts with nine QC managers.
 
 **What does catalogue consistency actually mean, measurably?** One pixel
 dimension, one background value, one crop and margin logic, and one edge
