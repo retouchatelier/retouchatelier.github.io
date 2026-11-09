@@ -1013,3 +1013,45 @@ document.addEventListener('DOMContentLoaded', function () {
   } catch (e) {}
 })();
 /* =============== end RA_SECURITY_HARDENING =============== */
+
+
+/* ================= RA_LEAD_SUBJECT =================
+   Every enquiry used to arrive with the same subject line, so Gmail stacked
+   them into one conversation and the second lead hid behind the first.
+   Give each enquiry its own subject: who, which company, how many images. */
+(function () {
+  "use strict";
+  function raVal(f, names) {
+    try {
+      var els = f.elements;
+      for (var i = 0; i < els.length; i++) {
+        var n = (els[i].name || "").toLowerCase();
+        for (var j = 0; j < names.length; j++) {
+          if (n === names[j] && els[i].value) {
+            return String(els[i].value).replace(/\s+/g, " ").replace(/[<>]/g, "").trim().slice(0, 60);
+          }
+        }
+      }
+    } catch (e) {}
+    return "";
+  }
+  document.addEventListener("submit", function (ev) {
+    try {
+      var f = ev.target;
+      if (!f || !f.action || f.action.indexOf("formsubmit.co") === -1) { return; }
+      var s = f.querySelector('input[name="_subject"]');
+      if (!s) { return; }
+      var base = s.getAttribute("data-base") || s.value || "New inquiry";
+      s.setAttribute("data-base", base);
+      var parts = [
+        raVal(f, ["name"]),
+        raVal(f, ["company"]) || raVal(f, ["email", "work email"]),
+        raVal(f, ["images", "images per day", "image_volume"])
+      ];
+      var tail = [];
+      for (var i = 0; i < parts.length; i++) { if (parts[i]) { tail.push(parts[i]); } }
+      if (tail.length) { s.value = base + " | " + tail.join(" | "); }
+    } catch (e) {}
+  }, true);
+})();
+/* =============== end RA_LEAD_SUBJECT =============== */
